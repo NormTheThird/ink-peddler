@@ -1,0 +1,33 @@
+﻿<div id="tattooadmin-new" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #323b44">
+            <div class="modal-header">
+                <h4 class="modal-title">Add A New Tattoo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input class="form-control" type="text" placeholder="Tattoo Name" name="Name" data-bind="value: Tattoo().Name" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input class="form-control" type="text" placeholder="Description" name="Description" data-bind="value: Tattoo().Description" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-outline-success" data-bind="click: SaveNewTattoo">Save New Tattoo</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

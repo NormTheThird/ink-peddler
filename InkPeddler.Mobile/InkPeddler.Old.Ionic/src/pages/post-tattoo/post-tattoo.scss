@@ -1,0 +1,32 @@
+page-post-tattoo {
+  .space-button {
+    margin-bottom: 20px;
+    margin-top: 30px;
+    width: 100%;
+  }
+  .full-image {
+    width: 100%;
+  }
+  .loading-diag {
+    width: 100%;
+    height: 100%;
+    color: black;
+    background-color: #000000
+  }
+  ion-header {
+    .toolbar {
+      position: absolute;
+      .toolbar-background {
+        background: transparent;
+      }
+      .toolbar-title {
+        color: black;
+      }
+    }
+    .bar-button-default-md {
+      border-radius: 50%;
+      background-color: map-get($colors, primary);
+      width: 32px;
+    }
+  }
+}

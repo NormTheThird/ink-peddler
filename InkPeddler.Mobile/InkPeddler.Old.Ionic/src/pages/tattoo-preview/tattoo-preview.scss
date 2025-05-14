@@ -1,0 +1,52 @@
+page-tattoo-preview {
+  .button-width {
+    width: 100%;
+  }
+  .button-clear-md {
+    border-color: white;
+    background-color: #2f2f2f;
+    color: white;
+    img {
+      padding-right: 6px;
+    }
+  }
+  .content-md hr {
+    background-color: map-get($colors, primary);
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  ion-header {
+    .toolbar {
+      position: absolute;
+      .toolbar-background {
+        background: transparent;
+      }
+      .toolbar-title {
+        color: black;
+      }
+    }
+    .bar-button-default-md {
+      border-radius: 50%;
+      background-color: map-get($colors, primary);
+      width: 32px;
+    }
+  }
+  .lr-padding {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .img-padding {
+    padding: 3px;
+  }
+  .img-center {
+    height: 45%;
+    margin: auto;
+    display: block;
+    background-position: center;
+    background-size: cover;
+  }
+  .highlight-button {
+    color: white;
+    background-color: map-get($colors, primary);
+  }
+}

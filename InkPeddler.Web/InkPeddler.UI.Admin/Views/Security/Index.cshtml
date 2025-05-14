@@ -1,0 +1,14 @@
+﻿<div class="wrapper-page" data-bind="with: CurrentVM()">
+
+    @Html.Partial("_Login")
+
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new SecurityViewModel());
+        MainVM.CurrentVM().Load('@ViewBag.ResetId');
+    </script>
+}

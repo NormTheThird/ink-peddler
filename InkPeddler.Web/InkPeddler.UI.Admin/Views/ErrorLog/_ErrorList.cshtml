@@ -1,0 +1,60 @@
+﻿<div id="error-list" class="row" style="display:none">
+    <div class="card-box table-responsive">
+
+        <h4 class="m-t-0 header-title">Errors</h4>
+        <form class="m-t-20 m-b-10">
+            <div class="form-row">
+                <div class="form-group col-md-1 pull-right">
+                    <select class="form-control" data-bind="value: ErrorsPaging().PerPage">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>Exception Type</th>
+                    <th>Exception Message</th>
+                    <th>Status</th>
+                    <th>Reviewer</th>
+                    <th>Date Logged</th>
+                    <th>Date Reviewed</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: ErrorsPaging().PaginatedArray">
+                <tr>
+                    <td data-bind="html: Source" />
+                    <td data-bind="html: ExceptionType" />
+                    <td data-bind="html: ExceptionMessage" />
+                    <td>
+                        <button class="btn btn-outline-info" data-bind="visible: IsReviewed()">Reviewed</button>
+                        <button class="btn btn-outline-warning" data-bind="visible: !IsReviewed()">Not Reviewed</button>
+                    </td>
+                    <td data-bind="html: ReviewedBy" />
+                    <td data-bind="html: DateCreated" />
+                    <td data-bind="html: DateReviewed" />
+                    <td>
+                        <button class="btn btn-outline-success" data-bind="click: $parent.EditError">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-danger" data-bind="click: $parent.DeleteError">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="m-t-30" data-bind="template: {'name' : 'PaginationTemplate', data: ErrorsPaging()}, visible: ErrorsPaging().PageTotal() > 1"></div>
+    </div>
+</div>

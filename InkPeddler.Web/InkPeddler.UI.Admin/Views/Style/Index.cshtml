@@ -1,0 +1,15 @@
+﻿<div data-bind="with: CurrentVM()">
+
+    @Html.Partial("_PaginationTemplate")
+    @Html.Partial("_StyleList")
+    @Html.Partial("_StyleModal")
+
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new StyleViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

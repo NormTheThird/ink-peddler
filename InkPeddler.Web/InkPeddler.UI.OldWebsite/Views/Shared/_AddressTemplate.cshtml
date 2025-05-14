@@ -1,0 +1,30 @@
+﻿<script type="text/html" id="AddressEditTemplate">
+    <div data-bind="css: { 'home-address': AddressType() === 1, 'work-address': AddressType() === 2} ">
+        <div class="form-group">
+            <label data-bind="visible: AddressType() === 1">Home</label>
+            <label data-bind="visible: AddressType() === 2">Work</label>
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <input class="form-control" data-bind="value: Address1" />
+            <input class="form-control" data-bind="value: Address2" />
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input class="form-control" data-bind="value: City" />
+        </div>
+        <div class="form-group">
+            <label>State</label>
+            <select class="form-control" name="State"
+                    data-bind="options: Base.StateList(),
+                            optionsCaption:'-- Select One --',
+                            optionsText: 'Name',
+                            optionsValue: 'Name',
+                            value:State"></select>
+        </div>
+        <div class="form-group">
+            <label>Zip Code</label>
+            <input class="form-control" data-bind="value: ZipCode" />
+        </div>
+    </div>
+</script>

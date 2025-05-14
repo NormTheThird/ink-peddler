@@ -1,0 +1,79 @@
+page-home {
+  .bottom-space {
+    margin-bottom: 10px;
+  }
+  .card-md {
+    margin: 0px !important;
+    width: 100% !important;
+    border-radius: 15px;
+  }
+  .searchbar-md {
+    padding: 8px;
+  }
+  .stle-padding {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .result-alert {
+    position: relative;
+    max-width: 90%;
+    color: map-get($colors, light);
+    background: map-get($colors, secondary);
+    margin: auto;
+    border-radius: 10px;
+    line-height: 25px;
+    text-align: center;
+  }
+  .pb-4-i {
+    padding-bottom: 3px;
+  }
+  .pl-10 {
+    padding-right: 5px;
+  }
+  .pr-10 {
+    padding-left: 5px;
+  }
+  .searchbar-md {
+    padding-top: 0px;
+  }
+  .searchbar-md .searchbar-input {
+    border-radius: 20px;
+  }
+  .stle-padding {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .item-md.item-block .item-inner {
+    padding-right: 0px;
+    border-bottom: 0px;
+  }
+  .scroll-content {
+    border-top: 0px;
+  }
+  .refresher-pulling-icon,
+  .refresher-refreshing-icon {
+    color: #00b19d;
+  }
+  .has-refresher>.scroll-content {
+    border-top: 0px;
+  }
+  .grid {
+    padding-top: 0px;
+  }
+  .tatto-content .scroll-content {
+    margin-top: 0px !important;
+  }
+  .tatto-content .fixed-content {
+    margin-top: 0px !important;
+  }
+  ion-refresher {
+    top: 0px !important;
+  }
+  [ion-fixed] {
+    padding-top: 56px;
+    width: 100%;
+  }
+  .grid-padding {
+    padding-top: 146px;
+  }
+}

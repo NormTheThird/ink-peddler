@@ -1,0 +1,250 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: "../assets/fonts";
+
+
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+
+
+@import "ionic.globals";
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+$dark: #323b44;
+$light-gray: #99968F;
+$dark-gray: #303030;
+$white: #EEEEEE;
+$primary: #00B19D;
+$secondary: #3bafda;
+$black: #000000;
+
+
+$colors: (
+  primary:    #00B19D,
+  secondary:  #3bafda,
+  danger:     #f53d3d,
+  green:      #00d600,
+  light:      #EEEEEE,
+  dark:       #323b44,
+  black:      #000000,
+);
+
+$background-color: $dark;
+$text-color: $white;
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+$toolbar-background: $dark;
+$toolbar-md-title-text-color: $secondary;
+$searchbar-md-background-color: $dark;
+$searchbar-md-input-background-color: $light-gray;
+$searchbar-md-input-placeholder-color: $dark-gray;
+$searchbar-md-input-text-color: $black;
+$card-md-background-color: $white;
+$card-md-border-radius: none;
+
+@import "ionic.theme.default";
+@import "ionic.ionicons";
+@import "roboto";
+@import "noto-sans";
+
+// Animations
+// --------------------------------------------------
+@keyframes bounceIn {
+    0%,
+    20%,
+    40%,
+    60%,
+    80%,
+    to {
+      animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+    }
+    0% {
+      opacity: 0;
+      transform: scale3d(.3, .3, .3)
+    }
+    20% {
+      transform: scale3d(1.1, 1.1, 1.1)
+    }
+    40% {
+      transform: scale3d(.9, .9, .9)
+    }
+    60% {
+      opacity: 1;
+      transform: scale3d(1.03, 1.03, 1.03)
+    }
+    80% {
+      transform: scale3d(.97, .97, .97)
+    }
+    to {
+      opacity: 1;
+      transform: scaleX(1)
+    }
+  }
+
+  .bounceIn {
+    animation-name: bounceIn
+  }
+
+  @keyframes bounceInLeft {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  
+    0% {
+      opacity: 0;
+      transform: translate3d(-3000px, 0, 0);
+    }
+  
+    60% {
+      opacity: 1;
+      transform: translate3d(25px, 0, 0);
+    }
+  
+    75% {
+      transform: translate3d(-10px, 0, 0);
+    }
+  
+    90% {
+      transform: translate3d(5px, 0, 0);
+    }
+  
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  .bounceInLeft {
+    animation-name: bounceInLeft;
+  }
+
+  @keyframes bounceOutRight {
+    20% {
+      opacity: 1;
+      transform: translate3d(-20px, 0, 0);
+    }
+  
+    to {
+      opacity: 0;
+      transform: translate3d(2000px, 0, 0);
+    }
+  }
+  
+  .bounceOutRight {
+    animation-name: bounceOutRight;
+  }
+
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both
+  }
+
+  .masonry {
+    -moz-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -moz-column-gap: 30px;
+    -webkit-column-gap: 30px;
+    column-gap: 30px;
+    -moz-column-fill: initial;
+    -webkit-column-fill: initial;
+    column-fill: initial;
+    column-count: 2;
+    -moz-column-gap: 0;
+    -webkit-column-gap: 0;
+    column-gap: 0;
+  }
+  .masonry-fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    img {
+      flex-shrink: 0;
+      min-width: 100%;
+      min-height: 100%
+    }
+  }
+
+  .border-bottom-input {
+    border-bottom-color: $primary;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding-top: 5px;
+    input {
+      margin-bottom: 3px;
+    }
+  }
+
+  .minimal-select {
+    padding-left: 0px !important;
+    min-height: 39px !important;
+    ion-select {
+      margin-bottom: 0px;
+      margin-left: 0px;
+      padding-top: 15px;
+      padding-left: 10px;
+      padding-bottom: 2px;
+      font-family: "Roboto", "Helvetica Neue", sans-serif;
+      font-size: 1.4rem;
+      max-width: 100% !important;
+      width: 100%;
+    }
+    .select-icon {
+      padding-right: 25px !important;
+    }
+    .item-inner {
+      border-bottom: none !important;
+      padding-right: 0px !important;
+    }
+  }
+
+  .lds-hourglass {
+    display: inline-block;
+    position: relative;
+  }
+  .lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 6px;
+    box-sizing: border-box;
+    border: 26px solid $primary;
+    border-color: $primary transparent $primary transparent;
+    animation: lds-hourglass 1.2s infinite;
+  }
+  @keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
+  
+  .scroll-content {
+    -webkit-overflow-scrolling: auto !important;
+  }

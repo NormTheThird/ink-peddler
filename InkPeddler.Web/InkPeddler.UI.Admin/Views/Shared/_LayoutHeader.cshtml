@@ -1,0 +1,52 @@
+﻿<div class="topbar">
+
+    <div class="topbar-left">
+        <div class="text-center">
+            <a href="http://www.inkpeddler.com" class="logo"><span>Ink Peddler</span></a>
+        </div>
+    </div>
+
+    <nav class="navbar-custom">
+        <ul class="list-inline float-right mb-0">
+
+            <!-- Full Screen -->
+            <li class="list-inline-item notification-list hide-phone">
+                <a class="nav-link waves-light waves-effect" href="#" id="btn-fullscreen">
+                    <i class="mdi mdi-crop-free noti-icon"></i>
+                </a>
+            </li>
+
+            <!-- Name Dropdown -->
+            <li class="list-inline-item dropdown notification-list">
+                <a class="nav-link dropdown-toggle waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
+                   aria-haspopup="false" aria-expanded="false">
+                    <span>@User.Identity.Name</span>
+                    @*<img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">*@
+                </a>
+                <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+                    <!-- item-->
+                    @*<a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="mdi mdi-account"></i> <span>Profile</span>
+                        </a>*@
+
+                    <!-- item-->
+                    @*<a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="mdi mdi-settings"></i> <span>Settings</span>
+                        </a>*@
+
+                    <!-- item-->
+                    @*<a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="mdi mdi-lock-open"></i> <span>Lock Screen</span>
+                        </a>*@
+
+                    <!-- Logout -->
+                    <a href="@Url.Action("Logout", "Security")" class="dropdown-item notify-item">
+                        <i class="mdi mdi-logout"></i> <span>Logout</span>
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+
+</div>

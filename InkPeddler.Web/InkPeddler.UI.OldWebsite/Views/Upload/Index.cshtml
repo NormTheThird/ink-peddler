@@ -1,0 +1,13 @@
+﻿@Html.Partial("_Uploader")
+
+ <div data-bind="with: Base.UploadVM">
+    <div data-bind="template: 'UploadTemplate'"></div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        Base.UploadVM(new UploadViewModel());
+        Base.UploadVM().Load();
+    </script>
+}

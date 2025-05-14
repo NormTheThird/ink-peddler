@@ -1,0 +1,207 @@
+android-defaults: &android-defaults
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-node8-alpha
+    environment:
+      JVM_OPTS: -Xmx4G
+
+ios-defaults: &ios-defaults
+    macos:
+      xcode: "10.1.0"
+    working_directory: ~/code
+    shell: /bin/bash --login -o pipefail
+
+version: 2
+jobs:
+  build-deploy-ios:
+    <<: *ios-defaults
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Export Build Number
+          command: echo 'export CIRCLE_WORKFLOW_NUM="$(cat /tmp/workspace/build-number/build-number.txt)"' >> $BASH_ENV
+      - checkout
+      - run: bundle install
+      - run:
+          name: Install Ionic
+          command: sudo npm install -g ionic cordova
+      - run:
+          name: NPM Install
+          command: npm install
+      - run:
+          name: Install CocoaPods
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run:
+          name: Update Perms and Exec.
+          command: |
+            sudo chown -R $USER:$GROUP ~/.npm
+            sudo chown -R $USER:$GROUP ~/.config
+      - run:
+          name: Bump App Version
+          command: python .circleci/scripts/bump_app_version.py $CIRCLE_WORKFLOW_NUM
+      - run:
+          name: Setup for production build
+          command: python .circleci/scripts/build_type_config.py prod
+      - run:
+          name: Build iOS 
+          command: ionic cordova build ios --prod --release
+      - run:
+          name: Fastlane alpha build deploy
+          command: bundle exec fastlane alpha
+  
+  build-deploy-android:
+    <<: *android-defaults
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Export Build Number
+          command: echo 'export CIRCLE_WORKFLOW_NUM="$(cat /tmp/workspace/build-number/build-number.txt)"' >> $BASH_ENV
+      - checkout
+      - run:
+          name: Install Ionic
+          command: sudo npm install -g ionic cordova
+      - run:
+          name: Install Gradle
+          command: sudo apt-get update && sudo apt-get install gradle && sudo apt-get install zipalign
+      - run:
+          name: Install Google API Client
+          command: sudo pip install google-api-python-client && sudo pip install --upgrade oauth2client
+      - run:
+          name: NPM Install
+          command: npm install
+      - run:
+          name: Bump App Version
+          command: python .circleci/scripts/bump_app_version.py $CIRCLE_WORKFLOW_NUM
+      - run:
+          name: Setup for production build
+          command: python .circleci/scripts/build_type_config.py prod
+      - run:
+          name: Build Android Release APK
+          command: ionic cordova build android --prod --release
+      - run:
+          name: Decode Keystore File
+          command: echo $KEYSTORE_FILE_BASE64 | base64 -d > keystore-file.jks
+      - run:
+          name: Decode Json Deploy File
+          command: echo $ANDROID_DEPLOY_JSON_KEY | base64 -d > key.json
+      - run:
+          name: Sign Release APK
+          command: echo $KEYSTORE_PASSWORD | jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore keystore-file.jks platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk inkpeddler
+      - run:
+          name: ZipAlign Release APK
+          command: zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk platforms/android/app/build/outputs/apk/release/inkpeddler-release-$CIRCLE_WORKFLOW_NUM.apk
+      - run:
+          name: Execute APK Upload to PlayStore
+          command: python .circleci/scripts/basic_upload_apks.py com.inkpeddler.mobile platforms/android/app/build/outputs/apk/release/inkpeddler-release-$CIRCLE_WORKFLOW_NUM.apk
+      - store_artifacts:
+          path: platforms/android/app/build/outputs/apk/
+
+  build-android:
+    <<: *android-defaults
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Export Build Number
+          command: echo 'export CIRCLE_WORKFLOW_NUM="$(cat /tmp/workspace/build-number/build-number.txt)"' >> $BASH_ENV
+      - checkout
+      - run:
+          name: Install Ionic
+          command: sudo npm install -g ionic cordova
+      - run:
+          name: Install Gradle
+          command: sudo apt-get update && sudo apt-get install gradle && sudo apt-get install zipalign
+      - run:
+          name: Install Google API Client
+          command: sudo pip install google-api-python-client && sudo pip install --upgrade oauth2client
+      - run:
+          name: NPM Install
+          command: npm install
+      - run:
+          name: Bump App Version
+          command: python .circleci/scripts/bump_app_version.py $CIRCLE_WORKFLOW_NUM
+      - run:
+          name: Build Android Release APK
+          command: ionic cordova build android --prod --release
+
+  build-ios:
+    <<: *ios-defaults
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Export Build Number
+          command: echo 'export CIRCLE_WORKFLOW_NUM="$(cat /tmp/workspace/build-number/build-number.txt)"' >> $BASH_ENV
+      - checkout
+      - run: bundle install
+      - run:
+          name: Install Ionic
+          command: sudo npm install -g ionic cordova
+      - run:
+          name: NPM Install
+          command: npm install
+      - run:
+          name: Install CocoaPods
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run:
+          name: Update Perms and Exec.
+          command: |
+            sudo chown -R $USER:$GROUP ~/.npm
+            sudo chown -R $USER:$GROUP ~/.config
+      - run:
+          name: Bump App Version
+          command: python .circleci/scripts/bump_app_version.py $CIRCLE_WORKFLOW_NUM
+      - run:
+          name: Build iOS 
+          command: ionic cordova build ios --prod --release
+
+  version-setup:
+    working_directory: /tmp
+    docker:
+      - image: buildpack-deps:jessie
+    steps:
+      - run:
+          name: Making workspace directory
+          command: |
+            CIRCLE_BUILD_NUM_DOCKER=${CIRCLE_BUILD_NUM}
+            mkdir -p /tmp/workspace/build-number
+            cd /tmp/workspace/build-number
+            echo ${CIRCLE_BUILD_NUM_DOCKER} > build-number.txt
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - build-number
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - version-setup
+      - build-deploy-android:
+          requires:
+            - version-setup
+          filters:
+            branches:
+              only: master
+      - build-deploy-ios:
+          requires:
+            - version-setup
+          filters:
+            branches:
+              only: master
+      - build-android:
+          requires:
+            - version-setup
+          filters:
+            branches:
+              ignore: master
+      - build-ios:
+          requires:
+            - version-setup
+          filters:
+            branches:
+              ignore: master

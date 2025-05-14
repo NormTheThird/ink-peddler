@@ -1,0 +1,35 @@
+﻿<script type="text/html" id="ImageGalleryTemplate">
+    <div class="row container-gallery">
+        <!-- Artwork Selection -->
+        <div class="col-xs-12">
+            <div class="post-container">
+                <div class="post-content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select class="form-control" data-bind="value: OrderBy">
+                                <option value="Newest">Newest Tattoos</option>
+                                <option value="Viewed">Most Viewed Tattoos</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control" placeholder="Other filter" />
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control" placeholder="Other filter" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="post-container">
+                <div class="post-content">
+                    <div class="row">
+                        <!-- Images -->
+                        <div data-bind="foreach: RefinedTattoos">
+                            <div class="col-sm-3 col-xs-6" data-bind="template: 'TattooTemplate'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

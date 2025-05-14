@@ -1,0 +1,16 @@
+﻿<div data-bind="with: CurrentVM()">
+
+    @Html.Partial("_PaginationTemplate")
+    @Html.Partial("_AccountList")
+    @Html.Partial("_AccountEdit")
+    @Html.Partial("_AccountNewModal")
+
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new AccountAdminViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

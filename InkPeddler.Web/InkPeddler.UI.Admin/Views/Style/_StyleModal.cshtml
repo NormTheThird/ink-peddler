@@ -1,0 +1,33 @@
+﻿<div id="style-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="StyleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #323b44">
+            <div class="modal-header">
+                <h4 class="modal-title">Add A New Style</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Name" class="control-label">Name</label>
+                            <input type="text" class="form-control" id="Name" data-bind="value: Style().Name" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Description" class="control-label">Description</label>
+                            <input type="text" class="form-control" id="Description" data-bind="value: Style().Description" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-outline-success" data-bind="click: SaveStyle">Save Style</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

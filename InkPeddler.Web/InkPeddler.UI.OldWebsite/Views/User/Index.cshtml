@@ -1,0 +1,21 @@
+﻿@Html.Partial("_UserShortProfile")
+
+@Html.Partial("TattooTemplate")
+
+@Html.Partial("_UserView")
+
+@Html.Partial("_UserEdit")
+
+<div data-bind="with: Base.UserVM()">
+    <div data-bind="template: { name: 'UserShortProfileTemplate', data: User }"></div>
+    <div data-bind="template: Content"></div>
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        Base.UserVM(new UserViewModel());
+        Base.UserVM().Load();
+    </script>
+}

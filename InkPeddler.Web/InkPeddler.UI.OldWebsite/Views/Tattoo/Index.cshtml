@@ -1,0 +1,19 @@
+﻿@Html.Partial("TattooTemplate")
+@Html.Partial("_ArtistShortProfile")
+@Html.Partial("_CanvasShortProfile")
+@Html.Partial("_CommentTemplate")
+@Html.Partial("_Tattoo")
+
+<div data-bind="with: Base.TattooVM()">
+
+    <div data-bind="template: { name: 'TattooDetailTemplate'}">
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        Base.TattooVM(new TattooViewModel());
+        Base.TattooVM().Load();
+    </script>
+}

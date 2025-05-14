@@ -1,0 +1,263 @@
+﻿<div id="accountadmin-edit" class="row" style="display:none">
+    <div class="col-xl-3 col-lg-4">
+
+        <!-- Profile Card -->
+        <div class="text-center card-box">
+            <div class="member-card">
+
+                <div class="thumb-xl member-thumb m-b-10 center-block" data-bind="visible: Account().AWSProfileImageId() != Base.Guid.Empty">
+                    <a href="#" class="text-white" data-bind="click: RemoveImage">Remove Image</a>
+                    <img class="img-thumbnail" alt="profile-image" data-bind="attr: { src: Account().ProfileImage() }"/>
+                </div>
+
+                <div class="row" data-bind="visible: Account().AWSProfileImageId() == Base.Guid.Empty">
+                    <div class="col-md-12 portlets">
+                        <div class="m-b-30">
+                            <form action="#" class="dropzone" data-bind="dropzone: { complete: SaveImage }">
+                                <div class="dz-message" data-dz-message><span>Upload Image</span></div>
+                                <div class="fallback">
+                                    <input name="file" type="file" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="">
+                    <h5 class="m-b-5" data-bind="text: Account().FullName"></h5>
+                    <h6 class="text-primary" data-bind="text: Account().Id"></h6>
+                </div>
+
+                <a class="btn btn-sm btn-outline-success w-sm waves-effect m-t-10 waves-light" data-bind="attr: { href: SendEmail() }">Email</a>
+
+                <div class="text-left m-t-30">
+                    <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15" data-bind="text: Account().PhoneNumber.PhoneMask()" /></p>
+                    <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15" data-bind="text: Account().Email" /></p>
+                    <p class="text-muted font-13"><strong>Location :</strong> <span class="m-l-15" data-bind="text: Account().Address().FullAddress" /></p>
+                    <p class="text-muted font-13"><strong>Created :</strong> <span class="m-l-15" data-bind="text: Account().DateCreated" /></p>
+                    <p class="text-muted font-13"><strong>Last Login :</strong> <span class="m-l-15" data-bind="text: Account().DateCreated" /></p>
+                </div>
+
+                <button class="btn btn-outline-success m-t-10" data-bind="click: GoBackToAccounts">Go Back To List Of Accounts</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Tabs -->
+    <div class="col-lg-8 col-xl-9">
+        <div class="">
+            <div class="card-box">
+                <ul class="nav nav-tabs tabs-bordered">
+                    <li class="nav-item">
+                        <a href="#settings" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            SETTINGS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tattoos-uploaded" data-toggle="tab" aria-expanded="true" class="nav-link">
+                            TATTOOS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#activity-log" data-toggle="tab" aria-expanded="true" class="nav-link">
+                            ACTIVITY LOG
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+
+                    <!-- Settings -->
+                    <div class="tab-pane active" id="settings">
+                        <form role="form">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="FirstName">First Name</label>
+                                    <input id="FirstName" class="form-control" type="text" name="FirstName" data-bind="value: Account().FirstName" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="LastName">Last Name</label>
+                                    <input id="LastName" class="form-control" type="text" name="LastName" data-bind="value: Account().LastName" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="Email">Email</label>
+                                    <input id="Email" class="form-control" type="text" name="Email" data-bind="value: Account().Email" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="Address1">Address 1</label>
+                                    <input id="Address1" class="form-control" type="text" name="Address1" data-bind="value: Account().Address().Address1" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="Address2">Address 2</label>
+                                    <input id="Address2" class="form-control" type="text" name="Address2" data-bind="value: Account().Address().Address2" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="PhoneNumber">Phone Number</label>
+                                    <input id="PhoneNumber" class="form-control" type="text" name="PhoneNumber" data-bind="value: Account().PhoneNumber.PhoneMask(), valueUpdate: 'afterkeydown'" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="City">City</label>
+                                    <input id="City" class="form-control" type="text" name="City" data-bind="value: Account().Address().City" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="State">State</label>
+                                    <select id="State" class="form-control" name="State" autocomplete="address-level1" data-bind="options: Base.States, optionsValue:'Name', optionsText: 'Name', value: Account().Address().State"></select>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="ZipCode">ZipCode</label>
+                                    <input id="ZipCode" class="form-control" type="text" name="ZipCode" data-bind="value: Account().Address().ZipCode" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-2">
+                                    <label for="Latitude">Latitude</label>
+                                    <input id="Latitude" disabled class="form-control" type="text" name="Latitude" data-bind="value: Account().Address().Latitude" />
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label for="Longitude">Longitude</label>
+                                    <input id="Longitude" disabled class="form-control" type="text" name="Longitude" data-bind="value: Account().Address().Longitude" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="AllowedOrigin">Allowed Origin</label>
+                                    <input id="AllowedOrigin" class="form-control" type="text" name="AllowedOrigin" data-bind="value: Account().AllowedOrigin" />
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label for="RefreshLifeInMin">Refresh Token Life Minutes</label>
+                                    <input id="RefreshLifeInMin" class="form-control" type="text" name="RefreshLifeInMin" data-bind="value: Account().RefreshTokenLifeTimeMinutes" />
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label for="DateOfBirth">Date Of Birth mm/dd/yyyy</label>
+                                    <input id="DateOfBirth" class="form-control" type="text" name="DateOfBirth" data-bind="value: Account().DateOfBirth" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="checkbox checkbox-primary form-group col-sm-1">
+                                    <input id="ActiveCheckBox" type="checkbox" data-bind="checked: Account().IsActive">
+                                    <label for="ActiveCheckBox">Is Active</label>
+                                </div>
+                                <div class="checkbox checkbox-primary form-group col-sm-1">
+                                    <input id="ArtistCheckBox" type="checkbox" data-bind="checked: Account().IsArtist">
+                                    <label for="ArtistCheckBox">Is Artist</label>
+                                </div>
+                                <div class="form-group col-sm-1">
+                                    <button class="btn btn-outline-success" data-bind="click: SaveAccount">Save</button>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="Password">New Password</label>
+                                    <input id="Password" class="form-control" type="text" name="Password" data-bind="value: Password" />
+                                </div>
+                                <div class="form-group col-sm-4">
+
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <label for="RefreshToken">Account Refresh Token</label>
+                                    <input id="RefreshToken" class="form-control" type="text" name="RefreshToken" data-bind="value: AccountRefreshToken().RefreshToken" />
+                                </div>
+                                <div class="form-group col-sm-1">
+                                    <label for="RefreshToken">Delete Token</label>
+                                    <button class="btn btn-outline-danger col-sm-12" data-bind="click: SaveNewPassword">Delete</button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-2">
+                                    <button class="btn btn-outline-warning" data-bind="click: SaveNewPassword">Save New Password</button>
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <button class="btn btn-outline-warning" data-bind="click: ResetPassword">Send Reset Password Link</button>
+                                </div>
+                                <div class="form-group col-sm-4">
+
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <input id="RefreshTokenIssued" class="form-control" type="text" name="RefreshTokenIssued" data-bind="value: AccountRefreshToken().DateIssued" />
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <input id="RefreshTokenExpired" class="form-control" type="text" name="RefreshTokenExpired" data-bind="value: AccountRefreshToken().DateExpired" />
+                                </div>
+                            </div>
+                        </form>
+
+
+                        @*<div class="form-group" data-bind="visible: Account().Id() == Base.Guid.Empty">
+                                <label>Password</label>
+                                <input class="form-control" type="text" placeholder="Password" name="Password" data-bind="value: Password" />
+                            </div>
+                            <div class="form-group" data-bind="visible: Account().Id() != Base.Guid.Empty">
+                                <label>Password</label>
+                                <button class="btn btn-dark form-control" data-bind="click: ResetPassword">Reset Password</button>
+                            </div>*@
+                    </div>
+
+                    <!-- Uploaded Tattoos -->
+                    <div class="tab-pane" id="tattoos-uploaded">
+                        <div class="row" data-bind="foreach: TattoosPaging().PaginatedArray">
+
+                            <div class="col-sm-4">
+                                <div class="gal-detail thumb">
+                                    <a href="#" class="image-popup" title="Screenshot-2">
+                                        <img class="img-thumbnail" alt="profile-image" data-bind="attr: { src: ImagePath() }" />
+                                    </a>
+                                    <h4 class="text-center" data-bind="text: Name"></h4>
+                                    <p class="text-center text-primary"><small data-bind="text: Id"></small></p>
+                                    <div class="ga-border"></div>
+                                    <p class="text-muted text-center" data-bind="text: Description"></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Activity Log -->
+                    <div class="tab-pane" id="activity-log">
+                        <form class="m-t-20 m-b-10">
+                            <div class="form-row">
+                                <div class="form-group col-md-1 pull-right">
+                                    <select class="form-control" data-bind="value: ActivityPaging().PerPage">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Activity Type</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: ActivityPaging().PaginatedArray">
+                                <tr>
+                                    <td data-bind="html: ActivityType" />
+                                    <td data-bind="html: DateCreated" />
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="m-t-30" data-bind="template: {'name' : 'PaginationTemplate', data: ActivityPaging()}, visible: ActivityPaging().PageTotal() > 1"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

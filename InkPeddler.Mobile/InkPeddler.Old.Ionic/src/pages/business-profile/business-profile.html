@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <div class="card-background-page">
+    <ion-card>
+      <img src="assets/imgs/cover-placeholder.png">
+      <div class="bg_curve"></div>
+    </ion-card>
+  </div>
+  <div padding>
+    <h4>{{businessModel.Business.Name}}</h4>
+    <h6>{{businessModel.Business.FullAddress}}</h6>
+    <h6>{{businessModel.Business.PhoneNumber}}</h6>
+  </div>
+  <div class="profile_status">
+    <ion-segment [(ngModel)]="details">
+      <ion-segment-button value="artists">
+        Artists
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="details">
+    <ion-list padding no-margin *ngSwitchCase="'artists'">
+      <ion-item no-lines margin-bottom>
+        <ion-icon name="people" item-start margin-right></ion-icon>
+        <span margin-left>{{artistResult}}</span>
+      </ion-item>
+      <div *ngFor="let artist of businessModel.Accounts">
+        <ion-item no-lines class="inner-list-item" (click)="goToArtistProfile(artist)" *ngIf="artist.IsArtist == true">
+          <ion-avatar item-start>
+            <img src="assets/imgs/avatar.png" />
+          </ion-avatar>
+          {{artist.FullName}}
+          <ion-icon item-right name="ios-arrow-forward-outline"></ion-icon>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

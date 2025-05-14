@@ -1,0 +1,18 @@
+///////////////////////////////////////////////////
+///        INCLUDED THIRD-PARTY VENDORS         ///
+///////////////////////////////////////////////////
+
+// Include NioIcon 
+@import "nioicon/nioicon";
+
+// Include Select2 
+@import "select2/core.scss";
+
+// Include Simplebar
+@import "simplebar";
+.simplebar-scroll-content {
+	@extend .simplebar-content-wrapper;
+}
+
+// Include Slick
+@import "slick/slick";

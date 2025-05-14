@@ -1,0 +1,16 @@
+﻿@Html.Partial("_ImageGallery")
+@Html.Partial("_ImageDetail")
+@Html.Partial("TattooTemplate");
+
+ <div data-bind="with: Base.ImageGalleryVM">
+    <div data-bind="template: 'ImageGalleryTemplate'"></div>
+</div>
+
+@section scripts
+{
+    @*<script src=~/ViewModels/Scripts/ImageViewModel.js?ver=@typeof(MvcApplication).Assembly.GetName().Version"></script>*@
+    <script type="text/javascript">
+        Base.ImageGalleryVM(new HomeGalleryViewModel());
+        Base.ImageGalleryVM().Load();
+    </script>
+}

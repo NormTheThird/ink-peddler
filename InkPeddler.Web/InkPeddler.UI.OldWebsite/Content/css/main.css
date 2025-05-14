@@ -1,0 +1,286 @@
+﻿/*colors
+green 7fff00
+purple 9E00B2*/
+.background-green {
+    background: #7fff00;
+}
+
+.background-purple {
+    background: #9e00b2;
+}
+
+.tatt-font {
+    font-family: Miltonian Tattoo;
+}
+
+.ropa {
+    font-family: 'Ropa Sans', sans-serif;
+}
+
+.font-white {
+    color: #fff;
+}
+
+.font-black {
+    color: #000;
+}
+
+#dZUpload {
+    background: brown;
+    padding: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+}
+
+.test {
+    color: #fff;
+}
+
+.home-address {
+    background-color: #808080
+}
+
+.work-address {
+    background-color: #999;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    background-color: #EEEEEE;
+}
+
+.avatar {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    margin: 10px;
+    padding: 7px;
+}
+
+    .avatar:after,
+    .avatar:before {
+        content: "";
+        position: absolute;
+        z-index: 2;
+        top: 3px;
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
+        border: 1px solid #999;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        box-shadow: 0px 1px 1px 1px #bbb;
+    }
+
+    .avatar:after {
+        z-index: 1;
+        border: 5px solid #fff;
+        -webkit-box-shadow: 0px 0px 0px 50px #fff;
+        -moz-box-shadow: 0px 0px 0px 50px #fff;
+        box-shadow: 0px 0px 0px 50px #fff;
+    }
+
+    .avatar img {
+        display: block;
+    }
+
+.vertical-center {
+    padding-top: 25%;
+    padding-bottom: 25%;
+    text-align: center;
+}
+
+@media (min-width: 620px) {
+    #btnView {
+        float: left;
+    }
+}
+
+.wait-container {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: gray;
+    z-index: 10000;
+    opacity: 0.6;
+    display: none;
+}
+
+.wait-indicator {
+    color: #03FF00;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+table {
+    margin-left: 30px;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    border: 0px;
+    padding: 0px;
+}
+
+.loading {
+    position: fixed;
+    text-align: center;
+    display: none;
+    width: 100%;
+}
+
+    .loading img {
+        height: 40px;
+    }
+
+/*todo: additional css added temporary location*/
+
+/*SECTION MARGIN*/
+.section-margin{
+    margin: 75px auto;
+}
+
+/*SELECTED TATT INFO*/
+#gallery-title {
+    padding-bottom: 25px;
+}
+
+    #gallery-title h1 {
+        color: #000;
+        text-transform: uppercase;
+        font-family: 'Ropa Sans', sans-serif;
+    }
+
+    #gallery-title a {
+        color: #000;
+    }
+
+#featured-tatt {
+    width: 75%;
+    max-width: 400px;
+    box-shadow: 0 16px 16px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.15);
+}
+/*TODO: THUMBS CONTAINER IS DISPLAY NONE*/
+#thumbs-container {
+    width: 75%;
+    height: 125px;
+    margin: 25px auto;
+    padding: 12px;
+    display: none;
+}
+
+#tat-stat{
+    margin-top: 0;
+}
+
+#tatt-tags {
+    min-height: 170px;
+}
+
+.well {
+    background: #e5e5e5;
+}
+
+/*USER PROFILE SECTION*/
+
+#myTab a {
+    background: #7fff00;
+    color: #000;
+}
+
+#user-edit {
+    margin-bottom: 150px;
+}
+
+#user-edit-tab-content {
+    padding: 20px 0 0 0;
+    background: #525252;
+    border: none;
+    border-radius: 0 0 5px 5px;
+}
+
+    #user-edit-tab-content label {
+        color: #fff;
+    }
+
+    #user-edit-tab-content input {
+        background: #737373;
+    }
+
+    #user-edit-tab-content .btn {
+        margin-bottom: 20px;
+        background-color: #84d900;
+        border-color: #609c02;
+        color: #000;
+        transition: color .25s;
+    }
+
+.no-pad{
+    padding: 0;
+}
+
+#user-edit-tab-content .btn:hover {
+    color: #fff;
+}
+
+#gallery{
+    margin-bottom: 100px;
+}
+
+/* Carousel base class */
+.carousel {
+    width: 200px;
+    margin: 0 auto;
+    height: 150px;
+    margin-bottom: 60px;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+
+    height: 150px;
+}
+
+.carousel-inner > .item > img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -50px;
+    width: 100px;
+    height: 100px;
+    margin-top: 25px;
+    box-shadow: 0 16px 16px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.15);
+}
+
+.carousel-control {
+    background: transparent;
+}
+
+.carousel-control.right {
+    background-image: none;
+}
+
+.carousel-control.left {
+    background-image: none;
+}
+
+.glyphicon.glyphicon-chevron-right {
+    color: #9E00B2;
+}
+
+.glyphicon.glyphicon-chevron-left {
+    color: #9E00B2;
+}
+
+

@@ -1,0 +1,16 @@
+﻿
+@Html.Partial("_Search")
+
+@Html.Partial("TattooTemplate")
+
+<div data-bind="with Base.SearchVM">
+    <div data-bind="template: 'SearchTemplate'"></div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        Base.SearchVM(new SearchViewModel());
+        Base.SearchVM().Load();
+    </script>
+}

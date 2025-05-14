@@ -1,0 +1,186 @@
+﻿<div id="business-edit" class="row" style="display:none">
+    <div class="col-xl-3 col-lg-4">
+
+        <!-- Profile Card -->
+        <div class="text-center card-box">
+            <div class="member-card">
+
+                <div class="thumb-xl member-thumb m-b-10 center-block" data-bind="visible: Business().AWSProfileImageId() != Base.Guid.Empty">
+                    <img class="img-thumbnail" alt="profile-image" data-bind="attr: { src: Business().ProfileImage() }"/>
+                </div>
+
+                <div class="row" data-bind="visible: Business().AWSProfileImageId() == Base.Guid.Empty">
+                    <div class="col-md-12 portlets">
+                        <div class="m-b-30">
+                            <form action="#" class="dropzone" data-bind="dropzone: { complete: SaveImage }">
+                                <div class="dz-message" data-dz-message><span>Upload Image</span></div>
+                                <div class="fallback">
+                                    <input name="file" type="file" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="">
+                    <h5 class="m-b-5" data-bind="text: Business().Name"></h5>
+                    <h6 class="text-primary" data-bind="text: Business().Id"></h6>
+                </div>
+
+                <div class="text-left m-t-40">
+                    <p class="text-muted font-13"><strong>Phone :</strong><span class="m-l-15">(123) 123 1234</span></p>
+                    <p class="text-muted font-13"><strong>Location :</strong> <span class="m-l-15">USA</span></p>
+                </div>
+
+                <button class="btn btn-outline-success m-t-10" data-bind="click: GoBackToAccounts">Go Back To List Of Accounts</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Tabs -->
+    <div class="col-lg-8 col-xl-9">
+        <div class="">
+            <div class="card-box">
+
+                <ul class="nav nav-tabs tabs-bordered">
+                    <li class="nav-item">
+                        <a href="#settings" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            SETTINGS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#accounts" data-toggle="tab" aria-expanded="true" class="nav-link">
+                            ACCOUNTS
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div class="tab-content">
+
+                    <!-- Settings -->
+                    <div class="tab-pane active" id="settings">
+                        <form role="form">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="FirstName">Business Name</label>
+                                    <input id="FirstName" class="form-control" type="text" name="FirstName" data-bind="value: Business().Name" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="PhoneNumber">Phone Number</label>
+                                    <input id="PhoneNumber" class="form-control" type="text" name="PhoneNumber" data-bind="value: Business().PhoneNumber.PhoneMask(), valueUpdate: 'afterkeydown'" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="Address1">Address 1</label>
+                                    <input id="Address1" class="form-control" type="text" name="Address1" data-bind="value: Business().Address().Address1" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="Address2">Address 2</label>
+                                    <input id="Address2" class="form-control" type="text" name="Address2" data-bind="value: Business().Address().Address2" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="City">City</label>
+                                    <input id="City" class="form-control" type="text" name="City" data-bind="value: Business().Address().City" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="State">State</label>
+                                    <select id="State" class="form-control" name="State" autocomplete="address-level1" data-bind="options: Base.States, optionsValue:'Name', optionsText: 'Name', value: Business().Address().State"></select>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="ZipCode">ZipCode</label>
+                                    <input id="ZipCode" class="form-control" type="text" name="ZipCode" data-bind="value: Business().Address().ZipCode" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-2">
+                                    <label for="Latitude">Latitude</label>
+                                    <input id="Latitude" disabled class="form-control" type="text" name="Latitude" data-bind="value: Business().Address().Latitude" />
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label for="Longitude">Longitude</label>
+                                    <input id="Longitude" disabled class="form-control" type="text" name="Longitude" data-bind="value: Business().Address().Longitude" />
+                                </div>
+                                <div class="form-group col-sm-5">
+
+                                </div>
+                                <div class="checkbox checkbox-primary form-group col-sm-1">
+                                    <input id="ActiveCheckBox" type="checkbox" data-bind="checked: Business().IsActive">
+                                    <label for="ActiveCheckBox">Is Active</label>
+                                </div>
+                                <div class="form-group col-sm-1">
+                                    <button class="btn btn-outline-success" data-bind="click: SaveBusiness">Save</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- Accounts -->
+                    <div class="tab-pane" id="accounts">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <select id="State" class="form-control" name="Account" autocomplete="address-level1" data-bind="options: AccountsNotTiedToABusiness, optionsValue:'AccountId', optionsText: 'NameAndEmail', value: NewBusinessAccount().AccountId"></select>
+                            </div>
+                            <div class="checkbox checkbox-primary form-group m-t-10 col-sm-2">
+                                <input id="OwnerCheckBox" type="checkbox" data-bind="checked:  NewBusinessAccount().IsOwner">
+                                <label for="OwnerCheckBox">Is Owner</label>
+                            </div>
+                            <div class="checkbox checkbox-primary form-group m-t-10 col-sm-2">
+                                <input id="ManagerCheckBox" type="checkbox" data-bind="checked:  NewBusinessAccount().IsManager" />
+                                <label for="ManagerCheckBox">Is Manager</label>
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <button class="btn btn-outline-success" data-bind="click: AddBusinessAccount">Add Account</button>
+                            </div>
+                        </div>
+
+
+                        <hr />
+
+                        <div class="row" data-bind="foreach: BusinessAccounts()">
+                            <div class="col-md-3">
+                                <div class="text-center card-box">
+                                    <div class="member-card">
+
+                                        <div class="thumb-lg member-thumb m-b-30 center-page">
+                                            <img class="img-thumbnail" data-bind="attr:{ src: ProfileImage }, visible: ProfileImage().length != 0" />
+                                            <img class="img-thumbnail" src="~/Content/images/no-image-placeholder.png" data-bind="visible: ProfileImage().length == 0" />
+                                        </div>
+
+                                        <div class="">
+                                            <h5 class="m-b-5" data-bind="text: FullName"></h5>
+                                            <h6 class="text-primary" data-bind="text: AccountId"></h6>
+                                        </div>
+
+                                        <button type="button" class="btn btn-outline-success btn-sm w-sm waves-effect m-t-10 waves-light" data-bind="click: $parent.GoToAccountProfile">Profile</button>
+
+                                        <div class="text-left m-t-40">
+                                            <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15" data-bind="text: PhoneNumber.PhoneMask()" /></p>
+                                            <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15" data-bind="text: Email" /></p>
+                                        </div>
+
+                                        <button class="btn btn-outline-warning m-t-10" data-bind="click: $parent.RemoveBusinessAccount">Remove Account</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

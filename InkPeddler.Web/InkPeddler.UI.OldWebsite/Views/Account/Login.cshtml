@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model InkPeddler.UI.Website.ViewModels.LoginViewModel
+<div class="row">
+    <div class="col-md-6 col-sm-8 col-xs-10 col-md-offset-3 col-sm-offset-2 col-xs-offset-1">
+        <div class="post-container">
+            <div class="post-content">
+                <div class="form-signin">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @*<div class="heading-title">
+                            <h3>Log in with one of the following</h3>
+                        </div>
+
+
+                        <hr />*@
+
+                        <div class="heading-title">
+                            <h3><i class="fa fa-lock"></i> Sign in</h3>
+                        </div>
+
+                        @Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger" })
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            @Html.TextBoxFor(m => m.Login, new { @class = "form-control input-md", placeholder = "Email or Username" })
+                        </div>
+
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control input-md", placeholder = "Password" })
+                        </div>
+
+                        @Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            <label for="keep" class="col-sm-6 col-xs-12 control-label">
+                                @Html.CheckBoxFor(m => m.RememberMe, new { @checked = "checked" })
+                                Remember Me!
+                            </label>
+                            <div class="col-sm-6 col-xs-12 btn-signin">
+                                <input type="submit" class="btn btn-ink btn-sm" value="Sign in" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="footer-links row">
+                            <div class="col-xs-6"><a href="@Url.Action("Register", "Account")"><i class="fa fa-external-link"></i> Register Now</a></div>
+                            <div class="col-xs-6 text-right"><a href="@Url.Action("ForgotPassword", "Account")"><i class="fa fa-lock"></i> Forgot password</a></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

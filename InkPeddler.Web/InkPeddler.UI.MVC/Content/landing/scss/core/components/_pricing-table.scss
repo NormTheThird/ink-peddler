@@ -1,0 +1,48 @@
+.pricing{
+    &-amount{
+        color: $accent-color;
+        small{
+            font-size: 1rem;
+            color: $base-light;
+        }
+    }
+    &-title{
+        margin: 1.25rem 0;
+    }
+    &-action{
+        margin-top: 1.75rem;
+    }
+    &-featured{
+        background-color: $accent-color;
+        .sub-title{
+            color: $accent-dim;
+        }
+        .btn-primary{
+            color: $base-dark;
+            background: $white;
+            border-color: $white;
+            &:hover{
+                color: $accent-color;
+            }
+        }
+        .pricing{
+            &-amount{
+                color: $white;
+                small{
+                    color: $accent-300;
+                }
+            }
+            &-title{
+                color: $white;
+            }   
+            &-features{
+                li{
+                    color: $accent-dim;
+                    del{
+                        color: $accent-400;
+                    }
+                }
+            }
+        }
+    }
+}

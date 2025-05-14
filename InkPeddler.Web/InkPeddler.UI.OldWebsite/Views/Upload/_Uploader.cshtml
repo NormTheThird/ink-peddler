@@ -1,0 +1,80 @@
+﻿<script type="text/html" id="UploadTemplate">
+    <div class="post-container">
+        <div class="post-content">
+            <h2>
+                New Tattoo
+            </h2>
+            <form id="NewTattooForm">
+                <div class="form-group center">
+                    <label>
+                        Tattoo Name:
+                    </label>
+                    <input class="form-control" name="TattooName" data-bind="value: Tattoo().Name" />
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Add Image
+                    </label>
+                    <input id="FileUploader" style="display: none;" type="file" accept="image/*" multiple data-bind="event: { change: FileUploadEvent }" />
+                    <a class="btn btn-default" onclick="$('#FileUploader').click()">Upload Images</a>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Image Gallery
+                    </label>
+                    <div class="row">
+                        <div data-bind="foreach: Tattoo().Images">
+                            <div class="col-md-3">
+                                <img class="img-responsive" data-bind="attr { src: Url }" />
+                                <a class="center-stuff btn btn-default" data-bind="click: $parent.RemoveImage">Remove</a>
+                                <div class="clearfix" data-bind="if: $index % 4 == 0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Tattoo Description
+                    </label>
+                    <textarea class="form-control" data-bind="value: Tattoo().Description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Styles
+                    </label>
+                    <div class="form-control" onclick="$('#StyleInput').focus()">
+                        @*<div data-bind="foreach: Tattoo().Styles">*@
+                        <!-- ko foreach: Tattoo().Styles -->
+                        <span class="badge">
+                            <span data-bind="text: Name"></span>
+                            <span data-bind="click: $parent.RemoveStyle">
+                                <i class="fa fa-close"></i>
+                            </span>
+                        </span>
+                        @*</div>*@
+                        <!-- /ko -->
+                        <input id="StyleInput" style="border: none" data-bind="value: StyleFilter, valueUpdate: 'afterkeydown', event: {keydown: AddStyleKey}" />
+                    </div>
+                    <div>
+                        <div data-bind="foreach: SearchedStyles">
+                            <span class="badge" data-bind="text: Name, click: $parent.AddStyle"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" data-bind="checked: IsCanvas" /> I am the Canvas
+                    </label>
+                    <br />
+                    <label>
+                        <input type="checkbox" data-bind="checked: IsArtist" /> I am the Artist
+                    </label>
+                </div>
+                <a class="btn btn-default" data-bind="click: SaveTattoo">Save Tattoo</a>
+            </form>
+        </div>
+    </div>
+</script>

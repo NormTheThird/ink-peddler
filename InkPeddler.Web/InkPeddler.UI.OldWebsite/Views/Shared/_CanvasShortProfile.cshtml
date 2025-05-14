@@ -1,0 +1,36 @@
+﻿<script type="text/html" id="CanvasShortProfile">
+    <div class="post-container">
+        <div class="post-content">
+            <div class="profile-account">
+                <!-- Profile Picture -->
+                <img id="imgProfile" class="img-responsive img-thumbnail" data-bind="attr: {src: ProfileImageUrl}" />
+                <input type="button" id="btnEditProfileImage" class="btn btn-ink btn-sm center-block" value="Edit Image" />
+
+                <!-- Full Name -->
+                <h3><label data-bind="text: Username" /></h3>
+
+                <h4>
+                    <a data-bind="attr: { href: '/User/' + Username() }">See all my tattoos</a>
+                    <!-- TODO Setup tattoo link -->
+                </h4>
+
+                <!-- Social Media -->
+                @*<p><strong>Social: </strong></p>
+                    <p>
+                        <a title="Facebook" data-bind="attr: { href: 'https://Facebook.com' + FacebookUrl(), target: '_blank' }, visible: FacebookUrl()">
+                            <i class="fa fa-facebook-square fa-lg"></i>
+                        </a>
+                        <a title="Twitter" data-bind="attr: { href: 'https://Twitter.com' + TwitterUrl(), target: '_blank' }, visible: TwitterUrl()">
+                            <i class="fa fa-twitter-square fa-lg"></i>
+                        </a>
+                        <a title="Instagram" data-bind="attr: { href: 'https://Instagram.com' + InstagramUrl(), target: '_blank' }, visible: InstagramUrl()">
+                            <i class="fa fa-instagram fa-lg"></i>
+                        </a>
+                        <a title="Pinterest" data-bind="attr: { href: 'https://Pinterest.com' + PinterestUrl(), target: '_blank' }, visible: PinterestUrl()">
+                            <i class="fa fa-pinterest-square fa-lg"></i>
+                        </a>
+                    </p>*@
+            </div>
+        </div>
+    </div>
+</script>

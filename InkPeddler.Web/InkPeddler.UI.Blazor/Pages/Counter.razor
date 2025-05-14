@@ -1,0 +1,41 @@
+﻿@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current Name: @currentCount</p>
+<p>@waiting</p>
+
+<button class="btn btn-primary" disabled=@isDisabled @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+    private string waiting = "";
+    private bool isDisabled = false;
+
+    private async Task IncrementCount()
+    {
+        currentCount = 50;
+        waiting = "Wating";
+        isDisabled = true;
+        // This does not work as it waits before it returns
+        //IncAsync();
+
+        // This does not work, it will not return the result from the call
+        //Task.Run(() => IncAsync().GetAwaiter().GetResult());
+
+
+        await Task.Delay(5000);
+        currentCount = 100;
+        waiting = "";
+        isDisabled = false;
+
+    }
+
+
+    public async Task IncAsync()
+    {
+        await Task.Delay(5000);
+        currentCount = 100;
+        waiting = "";
+    }
+}

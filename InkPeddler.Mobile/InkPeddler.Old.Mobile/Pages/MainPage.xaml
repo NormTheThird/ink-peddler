@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="InkPeddler.Mobile.Pages.MainPage"
+            xmlns:pages="clr-namespace:InkPeddler.Mobile.Pages"
+            NavigationPage.HasNavigationBar="false"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            Style="{StaticResource PageStyle}">
+
+    <TabbedPage.Children>
+        <NavigationPage Title="Home">
+            <x:Arguments>
+                <pages:HomePage BindingContext="{Binding HomePageModel}"/>
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Map">
+            <x:Arguments>
+                <pages:MapPage  BindingContext="{Binding MapPageModel}"/>
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Profile">
+            <x:Arguments>
+                <pages:ProfilePage  BindingContext="{Binding ProfilePageModel}"/>
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+</TabbedPage>

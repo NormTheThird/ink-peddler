@@ -1,0 +1,32 @@
+﻿<script type="text/html" id="ImageTemplate">]
+    @* NOT used *@
+    @*<div class="col-md-3 col-sm-6 col-xs-12">*@
+        <div class="post-container">
+            <div class="post-option">
+                <ul class="list-options">
+                    <li><a href="#"><i class="fa fa-plus"></i>    <span>Detail</span></a></li>
+                    <li><a href="#"><i class="fa fa-comment"></i> <span>Comment</span></a></li>
+                    <li><a href="#"><i class="tatit-md"></i>      <span>Tat It</span></a></li>
+                </ul>
+            </div>
+            <div class="post-image">
+                <a href="#" class="img-group-gallery">
+                    <img class="img-responsive" data-bind="attr: {src: Url}">
+                </a>
+            </div>
+            <div class="post-meta">
+                <ul class="list-meta list-inline">
+                    <li><i class="fa fa-eye"></i>     <label data-bind="text: NumberOfViews"></label></li>
+                    <li><i class="fa fa-comment"></i> <label data-bind="text: NumberOfComments"></label></li>
+                    <li><i class="is-tated-sm"></i>   <label data-bind="text: NumberOfTats"></label></li>
+                </ul>
+            </div>
+            <div class="post-desc">
+                <i class="fa fa-tags"></i>Tags:
+                <div data-bind="foreach:Styles">
+                    <a data-bind="text: $data, href: $data"></a>
+                </div>
+            </div>
+        </div>
+    @*</div>*@
+</script>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="primary" hideBackButton="true">
+    <ion-buttons left>
+      <button navPop ion-button icon-only>
+        <ion-icon color="light" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding no-bounce>
+  <ion-row>
+    <ion-col text-center>
+      <h2>Sign In</h2>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-item>
+      <ion-input placeholder="Email" [(ngModel)]="Login.Login"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="Login.Password"></ion-input>
+    </ion-item>
+  </ion-row>
+
+  <ion-row padding>
+    <ion-col text-center>
+      <ion-content ion-text [color]="MessageModel.TextColor" *ngIf="MessageModel.IsVisible" [innerHTML]="MessageModel.Text"></ion-content>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col width-50 style="text-align: right">
+      <button ion-button clear (click)="SignUp()">Sign Up</button>
+    </ion-col>
+    <ion-col width-50 style="text-align: left">
+      <button ion-button color="primary" (click)="SignIn()">Sign In</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button clear (click)="ForgotPassword()">
+        <ion-icon padding name="lock"></ion-icon>
+        Forgot Password?
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

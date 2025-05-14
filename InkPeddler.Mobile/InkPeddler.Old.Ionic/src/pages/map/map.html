@@ -1,0 +1,13 @@
+<ion-content no-bounce>
+  <div id="map_canvas" class="map-canvas">
+    <div class="result-alert animated" [ngClass]="{bounceInLeft: showResultAlert}" >{{searchResult}}</div>
+    <ion-fab bottom right>
+      <button ion-fab mini color="primary" (click)="findMyLocation()">
+        <ion-icon name="ios-locate-outline"></ion-icon>
+      </button>
+      <button ion-fab mini color="primary" (click)="changeRadius()">
+        <ion-icon name="ios-radio-button-off-outline"></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
+</ion-content>

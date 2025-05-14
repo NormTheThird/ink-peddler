@@ -1,0 +1,17 @@
+page-tabs {
+  .tabbar {
+    padding-bottom: 0px !important;
+  }
+  .tabs-md .tabbar {
+    background: #323b44;
+  }
+  .tabs-md .tab-button-icon {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"]>.tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+    content: none;
+  }
+}

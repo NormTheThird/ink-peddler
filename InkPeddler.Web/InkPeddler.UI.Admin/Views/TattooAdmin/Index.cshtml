@@ -1,0 +1,16 @@
+﻿<div data-bind="with: CurrentVM()">
+
+    @Html.Partial("_PaginationTemplate")
+    @Html.Partial("_TattooList")
+    @Html.Partial("_TattooEdit")
+    @Html.Partial("_TattooNewModal")
+
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new TattooAdminViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

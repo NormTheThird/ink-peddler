@@ -1,0 +1,25 @@
+﻿<ul>
+    <li class="menu-title">User Main</li>
+
+    @using InkPeddler.UI.Admin.SecurityModels
+    @if ((User as CustomPrincipal).IsBusinessOwner())
+    {
+        <li>
+            <a href="@Url.Action("Index", "Business")" class="waves-effect waves-primary">
+                <i class="ti-briefcase"></i><span>Business Management</span>
+            </a>
+        </li>
+    }
+
+    <li>
+        <a href="@Url.Action("Index", "AccountUser")" class="waves-effect waves-primary">
+            <i class="ti-user"></i><span>Account Management</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "TattooUser")" class="waves-effect waves-primary">
+            <i class="ti-marker-alt"></i><span>Tattoo Management</span>
+        </a>
+    </li>
+
+</ul>

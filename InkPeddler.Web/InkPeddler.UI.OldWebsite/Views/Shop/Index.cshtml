@@ -1,0 +1,22 @@
+﻿
+@Html.Partial("_ShopProfile")
+@Html.Partial("_ManageEmployees")
+@Html.Partial("_AddressTemplate")
+@Html.Partial("TattooTemplate")
+
+<div data-bind="with: Base.ShopVM()">
+    <div class="col-sm-3">
+        <div data-bind="template: {name: 'ShopProfileViewTemplate'}"></div>
+    </div>
+    <div class="col-sm-9">
+        <div data-bind="template: Content"> </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        Base.ShopVM(new ShopViewModel());
+        Base.ShopVM().Load();
+    </script>
+}

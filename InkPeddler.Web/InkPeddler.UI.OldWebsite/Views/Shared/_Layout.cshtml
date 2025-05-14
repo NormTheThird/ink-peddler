@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title>INKPeddler.com</title>
+
+    <!-- Styles -->
+    <link href="~/Content/css/animate.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/plugins/bootstrap/bootstrap_3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/css/style.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/css/responsive.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/css/main.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <link type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700,600" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Miltonian+Tattoo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
+</head>
+<body class="background">
+    <!-- Header -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+
+            <!-- Moble Navigation -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                    <img src="~/Content/img/logo.png" />
+                </a>
+            </div>
+
+            <!-- Main Navigation Menu -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        string userId = "";
+                        if (Request.Cookies["UserId"] != null)
+                        {
+                            userId = Request.Cookies["UserId"].Value;
+                        }
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                <img class="img-responsive img-avatar" alt="avatar" src="~/Content/img/no_image_Available_green.png">
+                                <strong><label>@User.Identity.Name</label></strong>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-list dropdown-menu-right" role="menu">
+                                <li>
+                                    <a href="@Url.Action("Index", "User")">
+                                    <i class="fa falist fa-cogs"></i> Account Settings</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="@Url.Action("LogOff", "Account")">
+                                    <i class="fa falist fa-power-off"></i> Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink(" Sign In", "Login", "Account", new { area = "" }, new { @class = "fa fa-lock" } )</li>
+                        <li>@Html.ActionLink(" Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "fa fa-edit" })</li>
+                        <li>@Html.ActionLink(" Find Artist", "Index", "Search", new { area = "" }, new { @class = "fa fa-search" })</li>
+                    }
+                </ul>
+            </div>
+
+            <!-- Search Button -->
+            @*<ul class="nav navbar-nav navbar-right nav-search visible-xs">
+                    <li class="fsearch"><a class="btn-search"></a></li>
+                </ul>*@
+
+        </div>
+
+    </nav>
+
+    <!-- Main Content Place Holder -->
+    <div id="content">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Loading -->
+    @*<div class="loading">
+            <div class="container">
+                <img src="~/Content/img/loading.gif" />
+            </div>
+        </div>*@
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <ul class="list-inline">
+                        <li><a href="#">Terms Of Service</a></li>
+                        <li>@Html.ActionLink("Privacy", "Privacy", "Legal", new { area = "" }, null)</li>
+                        <li><a href="@Url.Action("Index", "Upload")">New Tattoo</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 hidden-xs">
+                    <ul class="list-social pull-right">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://www.instagram.com/inkpeddler/"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <p id="copy" class="text-center clearfix">Copyright &copy; 2017 All Right Reserved.</p>
+        </div>
+    </div>
+
+    @Scripts.Render("~/JS/plugins")
+
+    @Scripts.Render("~/VM/Scripts")
+
+    <script type="text/javascript">
+        var Base = new BaseViewModel();
+        ko.applyBindings(Base);
+
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-78547460-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    @RenderSection("scripts", false)
+</body>
+</html>

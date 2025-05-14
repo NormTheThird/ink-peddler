@@ -1,0 +1,37 @@
+<ion-content no-bounce class="tatto-content">
+  <div ion-fixed>
+    <ion-searchbar class="pb-4-i" (ionInput)="fetchByTerm($event)"></ion-searchbar>
+    <ion-item class="stle-padding">
+      <ion-label>Tattoo Style</ion-label>
+      <ion-select [(ngModel)]="tattooStyleId" okText="Ok" cancelText="Cancel" (ionChange)="fetchByStyle()" (ionCancel)="clearStyleId()">
+        <ion-option *ngFor="let style of tattooStyleData.Styles" [value]="style.Id">{{style.Name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <div class="result-alert animated" [ngClass]="{bounceInLeft: showNoResultAlert, bounceOutRight: !showNoResultAlert}"
+      *ngIf="!hideNoResultAlertDiv">No tattoos found!</div>
+  </div>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid class="grid-padding">
+    <ion-row>
+      <ion-col class="pl-10">
+        <div *ngFor="let tattoo1 of tattoo1Array.Tattoos" (click)="showModal(tattoo1)" class="bottom-space">
+          <ion-card>
+            <img [src]="tattoo1.MainImageUrl" />
+          </ion-card>
+        </div>
+      </ion-col>
+      <ion-col class="pr-10">
+        <div *ngFor="let tattoo2 of tattoo2Array.Tattoos" (click)="showModal(tattoo2)" class="bottom-space">
+          <ion-card>
+            <img [src]="tattoo2.MainImageUrl" />
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="fetchAndPopulate($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

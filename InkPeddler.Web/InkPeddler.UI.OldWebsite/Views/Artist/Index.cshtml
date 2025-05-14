@@ -1,0 +1,27 @@
+﻿@Html.Partial("_ArtistShortProfile")
+
+@{  // If Artist Show }
+    @Html.Partial("_Settings", "Artist")
+
+    // Else
+    @Html.Partial("_Profile", "Artist")
+    // Always Load
+}
+
+@Html.Partial("TattooTemplate")
+<div data-bind="with: Base.ArtistProfileVM()">
+    <div class="col-md-3 col-sm-4 col-xs-12 well">
+        <div data-bind="template: {name: 'ArtistShortProfile', data: Artist }"></div>
+    </div>        
+    <div data-bind="template: Content"></div>
+</div>
+
+@section scripts
+{
+    <script src="~/ViewModels/Scripts/ArtistViewModel.js?ver=@typeof(MvcApplication).Assembly.GetName().Version"></script>
+    <script type="text/javascript">
+        Base.ArtistProfileVM(new ArtistProfileViewModel());
+        Base.ArtistProfileVM().Load();
+    </script>
+}
+

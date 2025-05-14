@@ -1,0 +1,30 @@
+default_platform :ios
+
+platform :ios do
+
+  before_all do
+    setup_circle_ci
+  end
+
+  lane :alpha do
+    match(type: "appstore", readonly: true)
+ 
+    # Patch Project Settings
+    proj = Xcodeproj::Project.open("../platforms/ios/inkPeddler.xcodeproj")
+    
+    proj.build_configurations.each do |item|
+        item.build_settings['DEVELOPMENT_TEAM'] = "3FXP3ZHJ4W"
+        item.build_settings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = "iPhone Developer"
+        item.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = "match AppStore com.inkpeddler.mobile"
+    end
+ 
+    proj.recreate_user_schemes
+    proj.save
+
+    gym(export_method: "app-store", workspace: "platforms/ios/inkPeddler.xcworkspace")
+
+    upload_to_testflight(skip_submission: true, skip_waiting_for_build_processing: true)
+
+  end
+
+end

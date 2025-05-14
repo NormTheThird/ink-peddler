@@ -1,0 +1,40 @@
+<ion-content no-bounce>
+  <div class="card-background-page">
+    <ion-card>
+      <img class="profile-image" src="assets/imgs/avatar.png" />
+      <img src="assets/imgs/cover-placeholder.png">
+      <div class="bg_curve"></div>
+    </ion-card>
+  </div>
+  <div padding>
+    <ion-input placeholder="First Name" type="text" class="border-bottom-input" [(ngModel)]="account.FirstName" (input)="dataModified($event)"></ion-input>
+    <ion-input placeholder="Last Name" type="text" class="border-bottom-input" [(ngModel)]="account.LastName" (input)="dataModified($event)"></ion-input>
+    <ion-input placeholder="Email" type="text" class="border-bottom-input" [(ngModel)]="account.Email" (input)="dataModified($event)" [disabled]="true"></ion-input>
+    <ion-input placeholder="Phone Number"  type="text" [(ngModel)]="maskedPhoneNumber" (keydown)="phoneNumberModified($event)" (input)="dataModified($event)" class="border-bottom-input" ></ion-input>
+    <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Date of Birth" class="border-bottom-input" [(ngModel)]="account.DateOfBirth"
+      (ionChange)="dataModified($event)"></ion-datetime>
+  </div>
+  <div class="profile_status">
+    <ion-segment [(ngModel)]="details">
+      <ion-segment-button value="tattoos">
+        My Tattoos
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="details" padding>
+    <button class="space-button" ion-button outline icon-left text-capitalize (click)="addNewTattoo()" color="secondary">
+      <ion-icon name="md-add"></ion-icon>
+      <span class="pt-3">Add New Tattoo</span>
+    </button>
+    <div *ngFor="let tattoo of tattooArray.Tattoos">
+      <ion-item no-lines class="inner-list-item" *ngIf="tattoo.IsActive == true">
+        <ion-avatar item-start>
+          <img [src]="tattoo.MainImageUrl" class="object-fit" />
+        </ion-avatar>
+        {{tattoo.Name}}
+        <ion-icon item-right name="md-create" (click)="editTattoo(tattoo)"></ion-icon>
+        <ion-icon item-right class="item-icon-pad-left" name="ios-close-circle-outline" (click)="deleteTattoo(tattoo)"></ion-icon>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

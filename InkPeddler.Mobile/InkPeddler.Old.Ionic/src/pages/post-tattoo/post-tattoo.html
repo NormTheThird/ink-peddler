@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button navPop ion-button icon-only>
+        <ion-icon color="light" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding no-bounce>
+  <img class="full-image" [src]="getImgContent()" *ngIf="tattooImage" />
+  <img class="full-image" src="assets/imgs/cover-placeholder.png" *ngIf="!tattooImage" />
+  <button class="space-button" ion-button outline icon-left text-capitalize (click)="selectImage()" *ngIf="!hideSave">
+    <ion-icon name="ios-image"></ion-icon>
+    <span *ngIf="!tattooImage">Add Image</span>
+    <span *ngIf="tattooImage">Change Image</span>
+  </button>
+  <ion-input placeholder="Tattoo Name" type="text" class="border-bottom-input" [(ngModel)]="tattooModel.tattoo.Name"></ion-input>
+  <ion-input placeholder="Tattoo Description" type="text" class="border-bottom-input" [(ngModel)]="tattooModel.tattoo.Description"></ion-input>
+  <ion-item class="minimal-select">
+    <ion-select [(ngModel)]="tattooModel.tattoo.BusinessId" [selectOptions]="shopSelectOptions" multiple="false"
+      placeholder="Select A Shop" class="border-bottom-input">
+      <ion-option *ngFor="let business of businessesResponse.Businesses" value="{{business.Id}}" (ionSelect)="clickOption = business">{{business.Name}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item class="minimal-select">
+    <ion-select [(ngModel)]="tattooModel.tattoo.ArtistAccountId" [selectOptions]="artistSelectOptions" multiple="false"
+      placeholder="Select An Artist" class="border-bottom-input">
+      <ng-container *ngFor="let artist of businessResponse.Accounts">
+        <ion-option *ngIf="artist.IsArtist == true" value="{{artist.AccountId}}">{{artist.FullName}}</ion-option>
+      </ng-container>
+    </ion-select>
+  </ion-item>
+  <button class="space-button" ion-button icon-left text-capitalize (click)="saveTattoo()" *ngIf="!hideSave">
+    <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+    Save
+  </button>
+</ion-content>

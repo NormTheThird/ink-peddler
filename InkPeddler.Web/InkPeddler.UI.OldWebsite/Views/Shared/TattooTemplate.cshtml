@@ -1,0 +1,81 @@
+﻿<script type="text/html" id="TattooTemplate">
+    <div class="animated fadeIn" data-bind="event: { mouseover: $parent.MouseIn, mouseout: $parent.MouseOut }">
+        <div class="post-image">
+            <a class="img-group-gallery" data-bind="attr: {href: '/Tattoo/' + Name() }">
+                <div data-bind="foreach: Images">
+                    @* Add link to image by Id *@
+                    <img class="img-responsive" data-bind="attr: {src: StoragePath}">
+                </div>
+            </a>
+        </div>
+        <div class="post-data animated">
+            <div class="post-meta">
+            </div>
+
+            <div class="post-desc">
+                <div data-bind="foreach:Styles">
+                    <a class="badge" data-bind="text: Name, href: Name"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<script type="text/html" id="TattooGalleryTemplate">
+    <div class="post-container" data-bind="visible: VisibleTattoos().length > 0">
+        <div class="post-content">
+            <div class="row">
+                <h4 data-bind="text: Header"></h4>
+                <div class="col-sm-12">
+                    <div data-bind="foreach: VisibleTattoos">
+                        <div class="col-xs-12" data-bind="css: {'col-sm-3': $parent.PerRow() == '4',
+                                                'col-sm-4': $parent.PerRow() == '3',
+                                                'col-sm-6': $parent.PerRow() == '2',
+                                                'col-sm-12': $parent.PerRow() == '1' }">
+                            <div data-bind="template: { name: 'TattooTemplate', data: $data }"> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <nav class="text-center" aria-label="Page navigation">
+                        <ul class="pagination" style="cursor:pointer">
+                            <li data-bind="css:{disabled: Page() <= 1} ">
+                                <a aria-label="Previous" data-bind="click: ChangePage('first')">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><a data-bind="text: Page() -2, click: ChangePage(-2), visible: Page() > 2 "> </a></li>
+                            <li><a data-bind="text: Page() -1, click: ChangePage(-1), visible: Page() > 1 "> </a></li>
+                            <li class="active"><a data-bind="text: Page() "> </a></li>
+                            <li><a data-bind="text: Page() +1, click: ChangePage(1), visible: (PageTotal() > Page() +0)"></a></li>
+                            <li><a data-bind="text: Page() +2, click: ChangePage(2), visible: (PageTotal() > Page() +1)"></a></li>
+
+                            <li data-bind="css: {disabled: (PageTotal() < Page() +1)}">
+                                <a aria-label="Next" data-bind="click: ChangePage('last')">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="ClaimTemplate" type="text/html">
+    <div class="post-container">
+        <div class="post-content">
+            <div data-bind="if: Type() == 'Artist'">
+                @*Is this your work?*@
+                <a class="btn btn-ink" data-bind="click:Claim">Claim it</a>
+            </div>
+
+            <div data-bind="if: Type() == 'Canvas'">
+                @*Is this your tattoo?*@
+                <a class="btn btn-ink" data-bind="click:Claim">Claim it</a>
+            </div>
+        </div>
+    </div>
+</script>

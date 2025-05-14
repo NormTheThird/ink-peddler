@@ -1,0 +1,43 @@
+page-business-profile {
+  .card-background-page {
+    position: relative;
+    ion-card {
+      position: relative;
+      text-align: center;
+      margin: 0;
+      width: 100%;
+      box-shadow: none;
+      overflow: hidden;
+      .bg_curve {
+        position: absolute;
+        bottom: -80px;
+        right: -100px;
+        left: -100px;
+        height: 100px;
+        background-color: map-get($colors, dark);
+        border-radius: 50%;
+        border-style: solid;
+        border-color: map-get($colors, secondary);
+        border-width: 2px;
+      }
+    }
+  }
+  ion-header {
+    .toolbar {
+      position: absolute;
+      .toolbar-background {
+        background: transparent;
+      }
+      .toolbar-title {
+        color: map-get($colors, black);
+      }
+    }
+    .bar-button-default-md {
+      min-width: unset;
+      border-radius: 50%;
+      color: white;
+      background-color: map-get($colors, primary);
+      width: 32px;
+    }
+  }
+}

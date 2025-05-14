@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\_oldServices\**" />
+    <EmbeddedResource Remove="Services\_oldServices\**" />
+    <None Remove="Services\_oldServices\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InkPeddler.Common\InkPeddler.Common.csproj" />
+    <ProjectReference Include="..\InkPeddler.Data\InkPeddler.Data.csproj" />
+  </ItemGroup>
+
+</Project>

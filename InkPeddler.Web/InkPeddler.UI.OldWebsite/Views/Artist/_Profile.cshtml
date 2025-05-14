@@ -1,0 +1,28 @@
+﻿<script type="text/html" id="ArtistProfileTemplate">
+    <div class="col-md-9 col-sm-8 col-xs-12">
+        <div class="post-container">
+            <div class="well">
+
+                <!-- Artist Bio -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="heading-title">
+                            <h2>
+                                About <label data-bind="text: Artist().FullName"></label>
+                            </h2>
+                        </div>
+                        <p data-bind="html: Artist().Bio"></p>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div data-bind="component: Worked "></div>
+                    <div data-bind="component: Canvased "></div>
+                    <div data-bind="component: Tatted "></div>
+                    <div data-bind="component: Uploaded "></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+

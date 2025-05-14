@@ -1,0 +1,71 @@
+﻿<nav class="navbar navbar-expand-lg fixed-top center-brand static-nav">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="~/Content/img/logo.png" alt="logo" class="logo-default">
+        </a>
+        <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#xenav">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="xenav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="@Url.Action("Index", "Home")">home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">contact </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="hero-section" id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row h-100">
+                    <div class="col-md-12 align-self-center">
+                        <div class="hero-content">
+                            <h1>The <b>New</b> Way to Find Your Next <b>Tattoo</b></h1>
+                            <p>Finding an artist or inspriation should be easy.</p>
+                            <div>
+                                <a href="#"><img src="~/Content/img/APPLE.png" /></a>
+                                <a href="https://play.google.com/store/apps/details?id=com.inkpeddler.mobile"><img src="~/Content/img/GOOGLE.png" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 pos-r">
+                <div class="row justify-content-md-center justify-content-sm-center">
+                    <div class="col-md-auto col-sm-auto">
+                        <div class="banner-app-mock">
+                            <img src="~/Content/img/banner-app.png" class="main-img" alt="" />
+                            <img src="~/Content/img/mobile-mock.png" class="mockup" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-graphic">
+                    <img src="~/Content/img/mobile-graphic.png" alt="" class="moc-grp">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+@Html.Partial("_AppFeature")
+@Html.Partial("_AboutApp")
+@*@Html.Partial("_AppScreenshot")*@
+@Html.Partial("_ContactUs")
+
+<footer class="copyright-text">
+    <p>All Right reserved by INKPEDDLER.COM | <a href="@Url.Action("Index", "Privacy")"><span style="color:#84D900;">Privacy</span></a></p>
+</footer>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new HomeViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

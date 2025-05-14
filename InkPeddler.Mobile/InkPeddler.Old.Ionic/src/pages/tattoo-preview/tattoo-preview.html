@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="primary" hideBackButton="true">
+    <ion-buttons left>
+      <button navPop ion-button icon-only>
+        <ion-icon color="light" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="img-center" [style.backgroundImage]="'url(' + tattoo.MainImageUrl + ')'"></div>
+  <ion-row class="lr-padding">
+    <ion-col>
+      <button ion-button icon-start clear small class="button-width" (click)="tatIt()" [ngClass]="{'highlight-button': tatted}">
+        <img class="img-padding" src="assets/imgs/15X15_tattoo_machine_white.png">
+        <div>Tat It</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-start clear small class="button-width" (click)="showCommentDialog()">
+        <ion-icon name="text"></ion-icon>
+        <div>Comment</div>
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row class="lr-padding">
+    <ion-col col-6>
+      <button class="button-width" ion-button outline icon-left text-capitalize (click)="viewBusiness()" [disabled]="!tattoo.BusinessId">
+        <ion-icon name="md-people"></ion-icon>
+        <span *ngIf="!tattooImage">View Business</span>
+      </button>
+    </ion-col>
+    <ion-col col-6>
+      <button class="button-width" ion-button outline icon-left text-capitalize (click)="viewArtist()" [disabled]="!tattoo.ArtistAccountId">
+        <ion-icon name="md-person"></ion-icon>
+        <span *ngIf="!tattooImage">View Artist</span>
+      </button>
+    </ion-col>
+  </ion-row>
+  <h2 class="lr-padding">{{tattoo.Name}}</h2>
+  <p class="lr-padding">{{tattoo.Description}}</p>
+  <hr>
+  <ion-list>
+    <div *ngFor="let comment of commentsResponse.TattooComments">
+      <ion-item text-wrap>
+        {{comment.Comment}}
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

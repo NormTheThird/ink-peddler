@@ -1,0 +1,10 @@
+.link-inline{
+    display: inline-flex;
+    flex-wrap: wrap;
+    a{
+        color: $base-400;
+        &:hover{
+            color: $primary;
+        }
+    }
+}

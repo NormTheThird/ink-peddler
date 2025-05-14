@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <div class="card-background-page">
+    <ion-card>
+      <img class="profile-image" src="assets/imgs/avatar.png" />
+      <img src="assets/imgs/cover-placeholder.png">
+      <div class="bg_curve"></div>
+    </ion-card>
+  </div>
+  <div padding>
+    <h4>{{account.FirstName + ' ' + account.LastName }}</h4>
+    <h6>
+      <ion-icon name="md-call"></ion-icon>
+      <a href="tel://{{account.PhoneNumber}}" class="phone-no-format">{{account.PhoneNumber}}</a>
+    </h6>
+  </div>
+  <div class="profile_status">
+    <ion-segment [(ngModel)]="details">
+      <ion-segment-button value="portfolio">
+        Portfolio
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="details">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="pl-10">
+          <div *ngFor="let tattoo1 of tattoo1Array.Tattoos" class="bottom-space">
+            <ion-card class="clip-corners">
+              <img [src]="tattoo1.MainImageUrl" />
+            </ion-card>
+          </div>
+        </ion-col>
+        <ion-col class="pr-10">
+          <div *ngFor="let tattoo2 of tattoo2Array.Tattoos" class="bottom-space">
+            <ion-card class="clip-corners">
+              <img [src]="tattoo2.MainImageUrl" />
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

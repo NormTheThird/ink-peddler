@@ -1,0 +1,132 @@
+﻿<script type="text/html" id="UserEditTemplate">
+    <div id="user-edit" class="col-xs-12">
+        <div class="post-container">
+            <div class="post-content">
+                <!-- Tab Control -->
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active"><a href="#user-edit-profile" data-toggle="tab">Profile</a></li>
+                    <li class=""><a href="#password" data-toggle="tab">Password</a></li>
+                </ul>
+                <!-- Tabs -->
+                <form id="user-edit-tab-content" class="tab-content clearfix" data-bind="with: UpdatedUserInfo()">
+
+
+                    <!-- Edit Profile Tab -->
+                    <div id="user-edit-profile" class="tab-pane fade active in col-xs-12">
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">User Name</label>
+                            <div class="col-sm-9">
+                                <input name="FirstName" type="text" class="form-control" data-bind="value:Username" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" readonly="readonly" data-bind="value:Email" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">First Name</label>
+                            <div class="col-sm-9">
+                                <input name="FirstName" type="text" class="form-control" data-bind="value:FirstName" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Last Name</label>
+                            <div class="col-sm-9">
+                                <input name="LastName" type="text" class="form-control" data-bind="value:LastName" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Phone Number</label>
+                            <div class="col-sm-9">
+                                <input type="tel" class="form-control" data-bind="value: PhoneNumber.PhoneMask(), valueUpdate: 'afterkeydown'" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Address</label>
+                            <div class="col-sm-9">
+                                <input name="Address" type="text" class="form-control" data-bind="value:Address().Address1" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Address 2</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" data-bind="value:Address().Address2" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">City</label>
+                            <div class="col-sm-9">
+                                <input name="City" type="text" class="form-control" data-bind="value:Address().City" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="state" class="col-sm-3 control-label">State</label>
+                            <div class="col-sm-9">
+                                <div class="ui-select">
+                                    <select class="form-control" name="State"
+                                            data-bind="options: Base.StateList(),
+                                                   optionsCaption:'-- Select One --',
+                                                   optionsText: 'Name',
+                                                   optionsValue: 'Name',
+                                                   value: Address().State"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Zip Code</label>
+                            <div class="col-sm-9">
+                                <input name="ZipCode" type="text" class="form-control" data-bind="value:Address().ZipCode" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-3 control-label">Bio</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 col-xs-12 text-center">
+                                <input type="submit" class="btn" value="Save Changes" data-bind="click: $parent.Save" />
+                            </div>
+                            <!-- Close Edit -->
+                            <div class="col-sm-6 col-xs-12 text-center">
+                                <a class="btn btn-ink" data-bind="click:Close">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Change Password Tab -->
+                    <div class="tab-pane fade" id="password">
+                        <div class="form-group clearfix">
+                            <label for="oldpassword" class="col-sm-3 control-label">Enter Old Password</label>
+                            <div class="col-sm-9">
+                                <input id="txtPasswordOld" type="password" class="form-control" placeholder="Enter Old Password" data-bind="value: $parent.OldPassword">
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="newpassword" class="col-sm-3 control-label">Enter New Password</label>
+                            <div class="col-sm-9">
+                                <input id="txtPasswordNew" type="password" class="form-control" placeholder="Enter New Password" data-bind="value:$parent.NewPassword">
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="confirmpassword" class="col-sm-3 control-label">Confirm New Password</label>
+                            <div class="col-sm-9">
+                                <input id="txtPasswordConfirm" type="password" class="form-control" placeholder="Confirm New Password" data-bind="value:$parent.ConfirmPassword">
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button class="btn btn-primary" data-bind="click:$parent.UpdatePassword">
+                                    Update Password
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>

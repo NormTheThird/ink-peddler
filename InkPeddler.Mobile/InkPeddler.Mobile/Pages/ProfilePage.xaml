@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InkPeddler.Mobile.Pages.ProfilePage"
+             NavigationPage.HasNavigationBar="false"
+             xmlns:buttons="clr-namespace:InkPeddler.Mobile.Views.Buttons"
+             xmlns:extensions="clr-namespace:InkPeddler.Mobile.Extensions"
+             Style="{StaticResource PageStyle}">
+
+    <StackLayout>
+        <StackLayout Margin="40,10">
+            <Label Style="{StaticResource HeaderLabel}" 
+                   Text="My Profile"
+                   HorizontalOptions="Center"
+                   Margin="10"/>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="{extensions:ImageResource InkPeddler.Mobile.Images.default-placeholder-image.png}" 
+                       HeightRequest="130"/>
+                <StackLayout Orientation="Vertical"
+                             Margin="10,10,0,10">
+                    <Label Style="{StaticResource BaseLabel}"
+                           Text="Trey Norman" />
+                    <Label Style="{StaticResource BaseLabel}"
+                           Text="WilliamRNorman@Gmail.com" />
+                    <buttons:BindableButton Style="{StaticResource BaseButton}"
+                                            Text="Edit Profile"
+                                            BindingContext="{Binding EditProfileButton}"
+                                            Margin="0,10,0,0"/>
+
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical"
+                     Margin="40,20">
+            <Button Style="{StaticResource BaseButton}" Text="My Tattoos" Margin="0,10" />
+            <Button Style="{StaticResource BaseButton}" Text="My Tats" Margin="0,10" />
+            <Button Style="{StaticResource BaseButton}" Text="Notifications" Margin="0,10" />
+            <Button Style="{StaticResource BaseButton}" Text="Settings" Margin="0,10" />
+            <buttons:BindableButton Style="{StaticResource BaseButton}"
+                                    BindingContext="{Binding SignOutButton}"
+                                    Margin="0,10" />
+        </StackLayout>
+        
+        
+        <StackLayout IsVisible="False">
+            <Entry Style="{StaticResource BaseEntry}"
+                   Placeholder="First Name" />
+            <Entry Style="{StaticResource BaseEntry}"
+                   Placeholder="Last Name" />
+            <Entry Style="{StaticResource BaseEntry}"
+                   Placeholder="Email"
+                   Keyboard="Email" />
+            <Entry Style="{StaticResource BaseEntry}"
+                   Placeholder="Phone Number" />
+            <Entry Style="{StaticResource BaseEntry}"
+                   Placeholder="Address" />
+            <Entry Style="{StaticResource BaseEntry}"
+                   Placeholder="Address 2" />
+            <Entry Style="{StaticResource BaseEntry}"
+                   Placeholder="City" />
+            <Entry Style="{StaticResource BaseEntry}"
+                   Placeholder="State" />
+            <Entry Style="{StaticResource BaseEntry}"
+                   Placeholder="Zip Code" />
+            <buttons:BindableButton Style="{StaticResource BaseButton}"
+                                    BindingContext="{Binding SaveButton}"
+                                    Margin="0,50,0,0" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

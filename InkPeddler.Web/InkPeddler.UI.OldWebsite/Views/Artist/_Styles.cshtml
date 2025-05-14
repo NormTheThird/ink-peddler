@@ -1,0 +1,27 @@
+﻿<div id="Artist-Styles-Modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Image Styles</h3>
+            </div>
+            <div class="modal-body">
+                <table class="table table-responsive">
+                    <tr data-bind="foreach: Artist().Styles">
+                        <td>
+                            <label>
+                                <input type="checkbox" data-bind="value: $data"/>
+                                <span data-bind="text: $data"></span>
+                            </label>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Close</a>
+                <asp:Button ID="btnSaveStyles" CssClass="btn btn-primary" OnClick="btnSaveStyles_Click" Text="Save Changes" />
+            </div>
+        </div>
+    </div>
+</div>

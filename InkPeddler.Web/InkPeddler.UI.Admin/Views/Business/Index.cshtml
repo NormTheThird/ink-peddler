@@ -1,0 +1,16 @@
+﻿<div data-bind="with: CurrentVM()">
+    
+    @Html.Partial("_PaginationTemplate")
+    @Html.Partial("_BusinessEdit")
+    @Html.Partial("_BusinessList")
+    @Html.Partial("_BusinessNewModal")
+    
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new BusinessViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

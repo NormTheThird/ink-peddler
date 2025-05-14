@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InkPeddler.Mobile.Pages.SecurityPage"
+             xmlns:buttons="clr-namespace:InkPeddler.Mobile.Views.Buttons"
+             xmlns:custom="clr-namespace:InkPeddler.Mobile.CustomControls"
+             Style="{StaticResource PageStyle}"
+             NavigationPage.HasNavigationBar="false">
+
+    <StackLayout VerticalOptions="Center"
+                 Margin="20, 0">
+        <!-- Login Section -->
+        <StackLayout IsVisible= "{Binding IsShowLogin}">
+            <custom:EntryControl Style="{StaticResource BaseEntry}"
+                                 Placeholder="Email address"
+                                 Text="{Binding Email, Mode=TwoWay}"
+                                 Keyboard="Email"
+                                 Margin="0,20"/>
+            <custom:EntryControl Style="{StaticResource BaseEntry}"
+                                 Placeholder="Password"
+                                 Text="{Binding Password, Mode=TwoWay}"
+                                 IsPassword="True" />
+            <buttons:BindableButton Style="{StaticResource BaseButton}"
+                                    BindingContext="{Binding LoginButton}"
+                                    Margin="0,50,0,0" />
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"
+                   TextColor="White"
+                   Margin="10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Need an account? Sign up " />
+                        <Span Text="Here!"
+                              TextColor="{StaticResource PrimaryColor}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowRegisterCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"
+                   TextColor="White"
+                   Margin="10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Reset Password"
+                              TextColor="{StaticResource PrimaryColor}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowResetPasswordCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+
+        <!-- Register Section -->
+        <StackLayout IsVisible="{Binding IsShowRegister}">
+            <custom:EntryControl Style="{StaticResource BaseEntry}"
+                                 Placeholder="First name"
+                                 Text="{Binding FirstName, Mode=TwoWay}"
+                                 Margin="0,20"/>
+            <custom:EntryControl Style="{StaticResource BaseEntry}"
+                                 Placeholder="Last name"
+                                 Text="{Binding LastName, Mode=TwoWay}" />
+            <custom:EntryControl Style="{StaticResource BaseEntry}"
+                                 Placeholder="Email address"
+                                 Text="{Binding Email, Mode=TwoWay}"
+                                 Keyboard="Email"
+                                 Margin="0,20"/>
+            <custom:EntryControl Style="{StaticResource BaseEntry}"
+                                 Placeholder="Password"
+                                 Text="{Binding Password, Mode=TwoWay}"
+                                 IsPassword="True" />
+            <buttons:BindableButton Style="{StaticResource BaseButton}"
+                                    BindingContext="{Binding RegisterButton}"
+                                    Margin="0,50,0,0" />
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"
+                   TextColor="White"
+                   Margin="10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Already have an account? Login " />
+                        <Span Text="Here!"
+                          TextColor="{StaticResource PrimaryColor}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowLoginCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+
+        <!-- Question Section -->
+        <StackLayout IsVisible="{Binding IsShowQuestion}">
+            <Label Style="{StaticResource HeaderLabel}"
+                   HorizontalTextAlignment="Center"
+                   Text="Are you an Artist?"/>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <buttons:BindableButton Style="{StaticResource BaseButton}"
+                                    BindingContext="{Binding RegisterArtistButton}"
+                                    Margin="0,30,20,0" />
+                <buttons:BindableButton Style="{StaticResource BaseButton}"
+                                    BindingContext="{Binding RegisterUserButton}"
+                                    Margin="20,30,0,0" />
+            </StackLayout>
+        </StackLayout>
+
+        <!-- Reset Password Section -->
+        <StackLayout IsVisible="{Binding IsShowResetPassword}">
+            <custom:EntryControl Style="{StaticResource BaseEntry}"
+                                 Placeholder="Email address"
+                                 Text="{Binding Email, Mode=TwoWay}"
+                                 Keyboard="Email"
+                                 Margin="0,20"/>
+            <buttons:BindableButton Style="{StaticResource BaseButton}"
+                                    BindingContext="{Binding ResetPasswordButton}"
+                                    Margin="0,20,0,10" />
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"
+                   TextColor="White"
+                   Margin="10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Already have an account? Login " />
+                        <Span Text="Here!"
+                          TextColor="{StaticResource PrimaryColor}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowLoginCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"
+                   TextColor="White"
+                   Margin="10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Need an account? Sign up " />
+                        <Span Text="Here!"
+                              TextColor="{StaticResource PrimaryColor}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowRegisterCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+
+        <!-- Reset Email Sent Section -->
+        <StackLayout IsVisible="{Binding IsShowResetEmailSent}">
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"
+                   TextColor="White"
+                   Margin="10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="An email has been sent! Login " />
+                        <Span Text="Here!"
+                          TextColor="{StaticResource PrimaryColor}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowLoginCommand}" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

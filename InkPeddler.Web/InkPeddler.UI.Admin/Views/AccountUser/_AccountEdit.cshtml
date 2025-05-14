@@ -1,0 +1,134 @@
+﻿<div id="accountuser-edit" class="row" style="display:none">
+    <div class="col-xl-3 col-lg-4">
+
+        <!-- Profile Card -->
+        <div class="text-center card-box">
+            <div class="member-card">
+
+                <div class="thumb-xl member-thumb m-b-10 center-block" data-bind="visible: Account().AWSProfileImageId() != Base.Guid.Empty">
+                    <a href="#" class="text-white" data-bind="click: RemoveImage">Remove Image</a>
+                    <img class="img-thumbnail" alt="profile-image" data-bind="attr: { src: Account().ProfileImage() }" />
+
+                </div>
+
+                <div class="row" data-bind="visible: Account().AWSProfileImageId() == Base.Guid.Empty">
+                    <div class="col-md-12 portlets">
+                        <div class="m-b-30">
+                            <form action="#" class="dropzone" data-bind="dropzone: { complete: SaveProfileImage }">
+                                <div class="dz-message" data-dz-message><span>Upload Image</span></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="">
+                    <h5 class="m-b-5" data-bind="text: Account().FullName"></h5>
+                    <h6 class="text-primary" data-bind="text: Account().Id"></h6>
+                </div>
+
+                <div class="text-left m-t-30">
+                    <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15" data-bind="text: Account().PhoneNumber.PhoneMask()" /></p>
+                    <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15" data-bind="text: Account().Email" /></p>
+                    <p class="text-muted font-13"><strong>Location :</strong> <span class="m-l-15" data-bind="text: Account().Address().FullAddress" /></p>
+                </div>
+
+                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#accountuser-changepassword" data-bind="click: NewPassword">Change Password</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Tabs -->
+    <div class="col-lg-8 col-xl-9">
+        <div class="">
+            <div class="card-box">
+                <ul class="nav nav-tabs tabs-bordered">
+                    <li class="nav-item">
+                        <a href="#profile" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            PROFILE
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+
+                    <!-- Profile -->
+                    <div class="tab-pane active" id="profile">
+                        <form role="form">
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="FirstName">First Name</label>
+                                    <input id="FirstName" class="form-control" type="text" name="FirstName" data-bind="value: Account().FirstName" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="LastName">Last Name</label>
+                                    <input id="LastName" class="form-control" type="text" name="LastName" data-bind="value: Account().LastName" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="Email">Email</label>
+                                    <input id="Email" class="form-control" type="text" name="Email" readonly data-bind="value: Account().Email" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="Address1">Address 1</label>
+                                    <input id="Address1" class="form-control" type="text" name="Address1" data-bind="value: Account().Address().Address1" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="Address2">Address 2</label>
+                                    <input id="Address2" class="form-control" type="text" name="Address2" data-bind="value: Account().Address().Address2" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="PhoneNumber">Phone Number</label>
+                                    <input id="PhoneNumber" class="form-control" type="text" name="PhoneNumber" data-bind="value: Account().PhoneNumber.PhoneMask(), valueUpdate: 'afterkeydown'" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="City">City</label>
+                                    <input id="City" class="form-control" type="text" name="City" data-bind="value: Account().Address().City" />
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="State">State</label>
+                                    <select id="State" class="form-control" name="State" autocomplete="address-level1" data-bind="options: Base.States, optionsValue:'Name', optionsText: 'Name', value: Account().Address().State"></select>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="ZipCode">ZipCode</label>
+                                    <input id="ZipCode" class="form-control" type="text" name="ZipCode" data-bind="value: Account().Address().ZipCode" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="DateOfBirth">Date Of Birth (mm/dd/yyyy)</label>
+                                    <input id="DateOfBirth" class="form-control" type="text" name="DateOfBirth" data-bind="value: Account().DateOfBirth" />
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label for="Latitude">Latitude</label>
+                                    <input id="Latitude" disabled class="form-control" type="text" name="Latitude" data-bind="value: Account().Address().Latitude" />
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label for="Longitude">Longitude</label>
+                                    <input id="Longitude" disabled class="form-control" type="text" name="Longitude" data-bind="value: Account().Address().Longitude" />
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-1">
+                                    <button class="btn btn-outline-success" data-bind="click: SaveAccount">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

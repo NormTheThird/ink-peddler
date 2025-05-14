@@ -1,0 +1,61 @@
+.styled-icon{
+    position: relative;
+    display: grid;
+    place-items: center;
+    .icon,svg{
+        color: currentColor;
+    } 
+    &-s1{
+        height: 90px;
+        width: 90px;
+        color: $white;
+        background-color: $primary;
+        border-radius: 7px;
+        .icon,svg{
+            height: 50px;
+            width: 50px;
+        }
+    }
+    &-s2{
+        height: 90px;
+        width: 90px;
+        color: $white;
+        border-radius: 50% 50% 50% 0;
+        .icon,svg{
+            height: 44px;
+            width: 44px;
+        }
+    }
+    &-s3{
+        background-color: $lighter;
+        width: 60px;
+        height: 60px;
+        border-radius:  50% 50% 50% 0;
+        .icon,svg{
+            height: 32px;
+            width: 32px;
+            color: currentColor;
+        }
+    }
+}
+
+.social{
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 -.5rem;
+    li{
+        display: inline-flex;
+        padding:0 .5rem;
+        .icon{
+            font-size: 1.25rem;
+        }
+        a{
+            display: inline-flex;
+            color: $base-400;
+            &:hover{
+                color: $primary;
+            }
+        }
+    }
+}

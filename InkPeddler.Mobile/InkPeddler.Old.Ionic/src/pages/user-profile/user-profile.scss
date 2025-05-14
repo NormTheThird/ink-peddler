@@ -1,0 +1,100 @@
+page-user-profile {
+  .object-fit {
+    object-fit: cover;
+  }
+  .profile-image {
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    z-index: 2;
+    bottom: 0px;
+    border-style: solid;
+    left: 5%;
+    border-width: 1px;
+    border-color: map-get($colors, primary);
+  }
+  .card-background-page {
+    position: relative;
+    ion-card {
+      position: relative;
+      text-align: center;
+      margin: 0;
+      width: 100%;
+      box-shadow: none;
+      overflow: hidden;
+      .bg_curve {
+        position: absolute;
+        bottom: -80px;
+        right: -100px;
+        left: -100px;
+        height: 100px;
+        background-color: map-get($colors, dark);
+        border-radius: 50%;
+        border-style: solid;
+        border-color: map-get($colors, secondary);
+        border-width: 2px;
+      }
+    }
+  }
+  ion-header {
+    .toolbar {
+      position: absolute;
+      .toolbar-background {
+        background: transparent;
+      }
+      .toolbar-title {
+        color: black;
+      }
+    }
+    .bar-button-default-md {
+      min-width: unset;
+      border-radius: 50%;
+      color: white;
+      background-color: map-get($colors, primary);
+      width: 32px;
+    }
+  }
+  .header-ios .toolbar-background-ios {
+    border-style: none;
+  }
+  .bar-button-default-ios,
+  .bar-button-default.bar-button-ios-default,
+  .bar-button-clear-ios-default {
+    color: map-get($colors, secondary);
+  }
+  .item-md {
+    padding-left: 0px;
+  }
+  .item-md ion-icon[item-left]+.item-inner,
+  .item-md ion-icon[item-left]+.item-input,
+  .item-md ion-icon[item-start]+.item-inner,
+  .item-md ion-icon[item-start]+.item-input {
+    margin-left: 0px;
+  }
+  .space-button {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  .item-icon-pad-left {
+    color: #ff5050;
+    padding-left: 25px;
+  }
+  ion-datetime {
+    button {
+      position: relative !important;
+    }
+    .datetime-text {
+      overflow: visible;
+    }
+    flex: 1;
+  }
+  .datetime-md {
+    padding-top: 18px;
+    padding-bottom: 2px;
+    padding-left: 8px;
+  }
+  .pt-3 {
+    padding-top: 3px;
+  }
+}

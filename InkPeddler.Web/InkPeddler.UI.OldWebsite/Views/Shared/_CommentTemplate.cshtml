@@ -1,0 +1,30 @@
+﻿<script type="text/html" id="CommentTemplate">
+        <div class="well">
+            <div>
+                <img data-bind="attr: {src: Author().ProfileImageUrl() }" />
+                <br />
+                <span data-bind="text: Author().Username"></span>
+            </div>
+            <hr />
+            <div>
+                <br />
+                <span data-bind="text: Comment"></span>
+            </div>
+        </div>
+</script>
+
+<script type="text/html" id="TattooCommentsTemplate">
+        <div data-bind="foreach: Comments">
+            <div data-bind="template: 'CommentTemplate'"></div>
+        </div>
+
+
+        <div class="">
+            @*// Show short profile*@
+            <div>
+                <h4>Leave a comment</h4>
+            </div>
+            <textarea class="form-control" name="Comment" data-bind="textInput: Comment"></textarea>
+            <a class="btn btn-ink" data-bind="click: SaveComment">Comment</a>
+        </div>
+</script>

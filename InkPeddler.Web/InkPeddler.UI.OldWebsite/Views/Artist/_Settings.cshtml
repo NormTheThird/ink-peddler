@@ -1,0 +1,245 @@
+﻿<script type="text/html" id="ArtistSettingsTemplate">
+    @Html.Partial("_Styles")
+    <div class="col-md-9 col-sm-8 col-xs-12">
+        <div class="post-container">
+            <div class="post-content">
+                <!-- Tab Control -->
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+                    <li class=""><a href="#password" data-toggle="tab">Password</a></li>
+                    <li class=""><a href="#social" data-toggle="tab">Social</a></li>
+                    <li class=""><a href="#images" data-toggle="tab">Images</a></li>
+                </ul>
+
+                <!-- Edit Artist Settings -->
+                <div id="myTabContent" class="tab-content clearfix">
+
+                    <!-- Edit Profile -->
+                    <div class="tab-pane fade active in" id="profile">
+                        <div class="form-group clearfix">
+                            <label for="firstName" class="col-sm-3 control-label">Your First Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Your first name" data-bind="value:Artist().FirstName" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="lastName" class="col-sm-3 control-label">Your Last Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Your last name" data-bind="value:Artist().LastName" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="username" class="col-sm-3 control-label">Username</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Username" data-bind="value:Artist().Username" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="email" class="col-sm-3 control-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" placeholder="Email" data-bind="value:Artist().Email" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="phone" class="col-sm-3 control-label">Phone Number</label>
+                            <div class="col-sm-9">
+                                <input type="tel" class="form-control phone" placeholder="Phone Number" data-bind="value:Artist().PhoneNumber.PhoneMask(), valueUpdate: 'afterkeydown'" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="shopName" class="col-sm-3 control-label">Shop Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Shop name" data-bind="value:Artist().ShopName" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="address1" class="col-sm-3 control-label">Address 1</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Shop address 1" data-bind="value:Artist().Address().Address1" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="address2" class="col-sm-3 control-label">Address 2</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Shop address 2" data-bind="value:Artist().Address().Address2" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="city" class="col-sm-3 control-label">City</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Shop city" data-bind="value:Artist().Address().City" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="state" class="col-sm-3 control-label">Shop State</label>
+                            <div class="col-sm-9">
+                                <select class="form-control"
+                                        data-bind="options: Base.StateList(),
+                                                       optionsCaption:'-- Select One --',
+                                                       optionsText: 'Name',
+                                                       optionsValue: 'Id',
+                                                       value:Artist().Address().State"></select>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="zipcode" class="col-sm-3 control-label">Zip Code</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Shop zip code" data-bind="value:Artist().Address().ZipCode" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="bio" class="col-sm-3 control-label">Bio</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="5" placeholder="Tell us a little bit about yourself" data-bind="value:Artist().Bio"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-default" data-bind="click: StylesModal">My Styles</a>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <input type="button" class="btn btn-ink" value="Save Profile Changes" data-bind="click:Save" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Password -->
+                    <div class="tab-pane fade" id="password">
+                        <div class="form-group clearfix">
+                            <label for="oldpassword" class="col-sm-3 control-label">Enter Old Password</label>
+                            <div class="col-sm-9">
+                                <input id="txtPasswordOld" type="password" class="form-control" placeholder="Enter Old Password" data-bind="value:Artist().OldPassword" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="newpassword" class="col-sm-3 control-label">Enter New Password</label>
+                            <div class="col-sm-9">
+                                <input id="txtPasswordNew" type="password" class="form-control" placeholder="Enter New Password" data-bind="value:Artist().NewPassword" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="confirmpassword" class="col-sm-3 control-label">Confirm New Password</label>
+                            <div class="col-sm-9">
+                                <input id="txtPasswordConfirm" type="password" class="form-control" placeholder="Confirm New Password" data-bind="value:Artist().ConfirmPassword" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <input type="button" class="btn btn-ink" value="Save Password Changes" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Social Media -->
+                    <div class="tab-pane fade" id="social">
+                        <div class="form-group clearfix">
+                            <label for="website" class="col-sm-3 control-label">Website</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Website" data-bind="value:Artist().Website" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="facebook" class="col-sm-3 control-label">Facebook</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon3">Facebook.com</span>
+                                    <input type="text" class="form-control" placeholder="Facebook" data-bind="value:Artist().Facebook" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="twitter" class="col-sm-3 control-label">Twitter</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon3">Twitter.com</span>
+                                    <input type="text" class="form-control" placeholder="Twitter" data-bind="value:Artist().Twitter" />
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <label for="instagram" class="col-sm-3 control-label">Instagram</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon3">Instagram.com</span>
+                                        <input type="text" class="form-control" placeholder="Instagram" data-bind="value:Artist().Instagram" />
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label for="pinterest" class="col-sm-3 control-label">Pinterest</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon3">Pinterest.com</span>
+                                            <input type="text" class="form-control" placeholder="Pinterest" data-bind="value:Artist().Pinterest" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <input type="button" class="btn btn-ink" value="Save Social Media Changes" data-bind="click:Save" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Images -->
+                    <div class="tab-pane fade" id="images">
+                        <div class="row">
+                            <input data-bind="value: SearchFilter" placeholder="Search by Name or Tag" />
+                            <select data-bind="value: OrderBy">
+                                <option value="0">Oldest To Newest</option>
+                                <option value="1">Newest To Oldest</option>
+                                <option value="2">Most Tats</option>
+                                <option value="3">Highest Views</option>
+                            </select>
+                            Per Page
+                            <select data-bind="value: ImagesPerPage">
+                                <option value="5">5</option>
+                                <option value="15">15</option>
+                                <option value="25">25</option>
+                                <option value="35">35</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="row wrapper-portfolio">
+                                <div class="col-md-4 col-sm-6 col-xs-12" data-bind="template: {name: 'ImageTemplate', foreach: VisibleTattoos }">
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div>
+                                        <a class="btn btn-default" data-bind="click: NewTattoo">New Tattoo</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="pagination" style="cursor: pointer">
+                                        <li data-bind="css: {disabled: !PageNumber(-1) }">
+                                            <a data-bind="click: FirstPage">&laquo;</a>
+                                        </li>
+                                        <li>
+                                            <a data-bind="click: PreviousPage2, visible: PageNumber(-2), text: PageNumber(-2)"></a>
+                                        </li>
+                                        <li>
+                                            <a data-bind="click: PreviousPage1, visible: PageNumber(-1), text: PageNumber(-1)"></a>
+                                        </li>
+                                        <li class="active">
+                                            <a data-bind="text: PageNumber(0)"></a>
+                                        </li>
+                                        <li>
+                                            <a data-bind="click: NextPage1, visible: PageNumber(1), text: PageNumber(1)"></a>
+                                        </li>
+                                        <li>
+                                            <a data-bind="click: NextPage2, visible: PageNumber(2), text: PageNumber(2)"></a>
+                                        </li>
+                                        <li data-bind="css: {disabled: !PageNumber(1) }">
+                                            <a data-bind="click: LastPage, visible: PageNumber">&raquo;</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script> 

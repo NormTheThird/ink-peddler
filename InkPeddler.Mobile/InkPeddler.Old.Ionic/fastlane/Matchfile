@@ -1,0 +1,5 @@
+git_url ("git@bitbucket.org:NormTheThird/inkpeddler.certificates.git")
+type ("appstore")
+
+app_identifier("com.inkpeddler.mobile")
+username("williamrnorman@gmail.com")

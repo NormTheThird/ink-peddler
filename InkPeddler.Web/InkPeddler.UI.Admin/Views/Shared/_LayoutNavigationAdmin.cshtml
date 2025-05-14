@@ -1,0 +1,46 @@
+﻿@using InkPeddler.UI.Admin.SecurityModels
+@if ((User as CustomPrincipal).IsSystemAdmin())
+{
+    <ul>
+
+        <li class="menu-title">Admin Main</li>
+
+        <li>
+            <a href="@Url.Action("Index", "Dashboard")" class="waves-effect waves-primary">
+                <i class="ti-home"></i><span> Dashboard </span>
+            </a>
+        </li>
+
+        <li class="has_sub">
+            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                <i class="ti-user"></i><span>User Management</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <ul class="list-unstyled">
+                <li><a href="@Url.Action("Index", "AccountAdmin")">Account Management</a></li>
+                <li><a href="@Url.Action("Index", "Business")">Business Management</a></li>
+            </ul>
+        </li>
+
+        <li class="has_sub">
+            <a href="#" class="waves-effect waves-primary">
+                <i class="ti-paint-bucket"></i><span>Tattoo Management</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <ul class="list-unstyled">
+                <li><a href="@Url.Action("Index", "TattooAdmin")">Tattoos</a></li>
+                <li><a href="@Url.Action("Index", "Style")">Styles</a></li>
+            </ul>
+        </li>
+
+        <li class="has_sub">
+            <a href="#" class="waves-effect waves-primary">
+                <i class="ti-list"></i><span>Logs</span>
+                <span class="menu-arrow"></span>
+            </a>
+            <ul class="list-unstyled">
+                <li><a href="@Url.Action("Index", "ErrorLog")">Error Log</a></li>
+            </ul>
+        </li>
+    </ul>
+}

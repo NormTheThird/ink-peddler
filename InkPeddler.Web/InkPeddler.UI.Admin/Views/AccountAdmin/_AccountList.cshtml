@@ -1,0 +1,67 @@
+﻿<div id="accountadmin-list" class="row" style="display:none">
+    <div class="card-box table-responsive">
+
+        <h4 class="m-t-0 header-title">Accounts</h4>
+        <form class="m-t-20 m-b-10">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input class="form-control" type="text" placeholder="Search by name, email, username, or phone" data-bind="value: AccountsFilter, valueUpdate: 'afterkeydown'" />
+                </div>
+                <div class="form-group col-md-2">
+                    <select class="form-control" data-bind="value: AccountTypeFilter">
+                        <option value="all">All</option>
+                        <option value="true">Artist</option>
+                        <option value="false">Users</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <select class="form-control" data-bind="value: AccountsPaging().PerPage">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#account-new">Add Account</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone #</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: AccountsPaging().PaginatedArray">
+                <tr>
+                    <td data-bind="html: FullName" />
+                    <td data-bind="html: Email" />
+                    <td data-bind="html: PhoneNumber.PhoneMask()" />
+                    <td data-bind="visible: IsArtist()">Artist</td>
+                    <td data-bind="visible: !IsArtist()">User</td>
+                    <td data-bind="html: Address().FullAddress" />
+                    <td>
+                        <button class="btn btn-outline-info" data-bind="click: $parent.ChangeAccountStatus, visible: IsActive()">Active</button>
+                        <button class="btn btn-outline-warning" data-bind="click: $parent.ChangeAccountStatus, visible: !IsActive()">Not Active</button>
+                        <button class="btn btn-outline-danger" data-bind="click: $parent.DeleteAccount, visible: !IsActive()">X</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-success" data-bind="click: $parent.EditAccount">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="m-t-30" data-bind="template: {'name' : 'PaginationTemplate', data: AccountsPaging()}, visible: AccountsPaging().PageTotal() > 1"></div>
+    </div>
+</div>

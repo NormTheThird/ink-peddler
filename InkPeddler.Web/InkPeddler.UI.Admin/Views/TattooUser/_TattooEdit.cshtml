@@ -1,0 +1,120 @@
+﻿<div id="tattoouser-edit" class="row" style="display:none">
+    <div class="col-xl-3 col-lg-4">
+
+        <!-- Tattoo Info -->
+        <div class="text-center card-box">
+            <div class="member-card">
+
+                <div class="thumb-xl member-thumb m-b-10 center-block">
+                    <label class="text-center text-white col-sm-12">Main Image</label>
+                    <img class="img-thumbnail" data-bind="visible: TattooMainImage().Id() !== Base.Guid.Empty, attr: { src: TattooMainImage().ImagePath() }" />
+                    <img class="img-thumbnail" src="~/Content/images/no-image-placeholder.png" data-bind="visible: TattooMainImage().Id() === Base.Guid.Empty" />
+                </div>
+
+                <div class="">
+                    <h5 class="m-b-5" data-bind="text: Tattoo().Name"></h5>
+                    <h6 class="text-primary" data-bind="text: Tattoo().Id"></h6>
+                </div>
+
+                <button class="btn btn-outline-success m-t-10" data-bind="click: GoBackToTattoos">Go Back To List Of Tattoos</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Tabs -->
+    <div class="col-lg-8 col-xl-9">
+        <div class="">
+            <div class="card-box">
+                <ul class="nav nav-tabs tabs-bordered">
+                    <li class="nav-item">
+                        <a href="#tattoo-info" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            TATTOO INFO
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tattoo-images" data-toggle="tab" aria-expanded="false" class="nav-link">
+                            TATTOO IMAGES
+                        </a>
+                    </li>
+                </ul>
+
+
+                <div class="tab-content">
+
+                    <!-- Tattoo Info -->
+                    <div class="tab-pane active" id="tattoo-info">
+                        <form role="form">
+
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label for="TattooName">Tattoo Name</label>
+                                    <input id="TattooName" class="form-control" type="text" name="TattooName" data-bind="value: Tattoo().Name" />
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="TattooShop">Tattoo Shop Where The Tattoo Took Place</label>
+                                    <select id="TattooShop" class="form-control" name="TattooShop"
+                                            data-bind="options: Businesses,
+                                                  optionsValue: 'Id',
+                                                   optionsText: 'NameWithCityState',
+                                                         value: Tattoo().BusinessId"></select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <label for="TattooDescription">Tattoo Description</label>
+                                    <textarea id="TattooDescription" rows="3" class="form-control" name="TattooDescription" data-bind="value: Tattoo().Description"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-1">
+                                    <button class="btn btn-outline-success" data-bind="click: SaveTattoo">Save</button>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                        </form>
+
+                    </div>
+
+                    <!-- Tattoo Images -->
+                    <div class="tab-pane" id="tattoo-images">
+
+                        <label class="text-warning" data-bind="visible: Tattoo().Id() === Base.Guid.Empty">Please save new tatoo before adding images!</label>
+
+                        <div data-bind="visible: Tattoo().Id() !== Base.Guid.Empty">
+
+                            <div class="row">
+                                <div class="col-sm-12 portlets">
+                                    <label>Upload Up To 20 Images</label>
+                                    <form action="#" class="dropzone" data-bind="dropzone: { complete: SaveTattooImage }">
+                                        <div class="dz-message" data-dz-message><span>Upload Images</span></div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <h3 class="text-warning m-t-20 m-b-20">For now the main image will be the image that shows up in the app.</h3>
+
+                            <div class="row" data-bind="foreach: TattooImages()">
+                                <div class="col-sm-3">
+                                    <div class="gal-detail thumb">
+                                        <img class="img-thumbnail" alt="profile-image" data-bind="attr: { src: ImagePath() }" />
+                                        <a href="javascript:void(0);" class="text-white pull-left m-t-20" data-bind="visible: !IsMainImage(), click: $parent.SaveAsTattooMainImage">Set As Main Image</a>
+                                        <a href="javascript:void(0);" class="text-danger pull-right m-t-20" data-bind="click: $parent.DeleteTattooImage">Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

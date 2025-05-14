@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InkPeddler.Mobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="MainBackgroundColor">#132226</Color>
+            <Color x:Key="PrimaryColor">#BE9063</Color>
+            <Color x:Key="SecondaryColor">#ffffff</Color>
+
+            <!-- Page Styles -->
+            <Style x:Key="PageStyle" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource MainBackgroundColor}"/>
+            </Style>
+
+            <!-- Tab -->
+            
+            <!-- Button Styles -->
+            <Style x:Key="BaseButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}"/>
+            </Style>
+
+            <!-- Label Styles -->
+            <Style x:Key="BaseLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style x:Key="HeaderLabel" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="FontSize" Value="Title"/>
+            </Style>
+
+            <!-- Entry Styles -->
+            <Style x:Key="BaseEntry" TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource MainBackgroundColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

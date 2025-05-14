@@ -1,0 +1,53 @@
+﻿<div id="style-list" class="row" style="display:none">
+    <div class="card-box table-responsive">
+
+        <h4 class="m-t-0 header-title">Styles</h4>
+        <form class="m-t-20 m-b-10">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input class="form-control" type="text" placeholder="Search by name" data-bind="value: StylesFilter, valueUpdate: 'afterkeydown'" />
+                </div>
+                <div class="form-group col-md-1">
+                    <select class="form-control" data-bind="value: StylesPaging().PerPage">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#style-modal" data-bind="click: AddStyle">Add Style</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: StylesPaging().PaginatedArray">
+                <tr>
+                    <td data-bind="html: Name" />
+                    <td data-bind="html: Description" />
+                    <td>
+                        <button class="btn btn-outline-info" data-bind="click: $parent.ChangeStyleStatus, visible: IsActive()">Active</button>
+                        <button class="btn btn-outline-warning" data-bind="click: $parent.ChangeStyleStatus, visible: !IsActive()">Not Active</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#style-modal" data-bind="click: $parent.EditStyle">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="m-t-30" data-bind="template: {'name' : 'PaginationTemplate', data: StylesPaging()}, visible: StylesPaging().PageTotal() > 1"></div>
+
+    </div>
+</div>

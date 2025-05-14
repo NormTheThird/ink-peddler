@@ -1,0 +1,87 @@
+﻿<script type="text/html" id="ShopProfileViewTemplate">
+    <div class="post-container">
+        <div class="post-content well">
+            <h2 data-bind="text: Shop().Name"></h2>
+            Find us!
+            <span data-bind="html: Shop().Address().AddressDisplay()"></span>
+            <div>
+                <label>Shop Owner</label>
+                <div data-bind="foreach: Shop().Owners">
+                    <span data-bind="text: Username"></span><br />
+                </div>
+                <label> Manager</label>
+                <div data-bind="foreach: Shop().Managers">
+                    <span data-bind="text: Username"></span><br />
+                </div>
+                <label> Artists </label>
+                <div data-bind="foreach: Shop().Artists">
+                    <span data-bind="text: Username"></span><br />
+                </div>
+                <div class="">
+                    <a class="" data-bind="click: ShowProfileEdit"><i class="glyphicon glyphicon-edit"></i>Edit Shop Info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="ShopProfileTemplate">
+    <div class="post-container well">
+        <div class="post-content">
+            <h1 data-bind="text: Shop().Name"> </h1>
+            <div>
+                Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+            </div>
+
+            <div data-bind="foreach: EmployeeList">
+                <div class="col-sm-3">
+                    <a data-bind="attr{ href: '/User/' + Username() } ">
+                        <span data-bind="text: Username"></span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="ShopProfileEditTemplate">
+    <div class="post-container">
+        <div class="post-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="pull-left">
+                        <a class="btn btn-default" data-bind="click: ShowViewEmployees"> Manage Employees</a>
+                    </span>
+                    <span class="pull-right" data-bind="click: ShowProfileView">
+                        <i class="fa fa-times fa-2x"></i>
+                    </span>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Business Name</label>
+                        <input class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Business Email</label>
+                        <input class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Business Username</label>
+                        <input class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label></label>
+                        <input class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label></label>
+                        <input class="form-control" />
+                    </div>
+                    <div data-bind="template: {name: 'AddressEditTemplate', data: Shop().Address}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

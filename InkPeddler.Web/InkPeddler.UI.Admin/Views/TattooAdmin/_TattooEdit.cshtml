@@ -1,0 +1,91 @@
+﻿<div id="tattooadmin-edit" class="row" style="display:none">
+    <div class="col-xl-3 col-lg-4">
+
+        <!-- Tattoo Info -->
+        <div class="text-center card-box">
+            <div class="member-card">
+
+                <div class="thumb-xl member-thumb m-b-10 center-block" data-bind="visible: TattooImages().length != 0">
+                    <img class="img-thumbnail" alt="profile-image" data-bind="attr: { src: TattooImage().ImagePath() }"/>
+                </div>
+
+                <div class="row" data-bind="visible: TattooImages().length == 0">
+                    <div class="col-md-12 portlets">
+                        <div class="m-b-30">
+                            <form action="#" class="dropzone" data-bind="dropzone: { complete: SaveTattooImage }">
+                                <div class="dz-message" data-dz-message><span>Upload Image</span></div>
+                                <div class="fallback">
+                                    <input name="file" type="file" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="">
+                    <h5 class="m-b-5" data-bind="text: Tattoo().Name"></h5>
+                    <h6 class="text-primary" data-bind="text: Tattoo().Id"></h6>
+                </div>
+
+                <button class="btn btn-outline-success m-t-10" data-bind="click: GoBackToTattoos">Go Back To List Of Tattoos</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Tattoo Info -->
+    <div class="col-lg-8 col-xl-9">
+        <div class="">
+            <div class="card-box">
+                <form role="form">
+
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="TattooName">Tattoo Name</label>
+                            <input id="TattooName" class="form-control" type="text" name="TattooName" data-bind="value: Tattoo().Name" />
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="UploadedAccountId">Uploaded Account Id</label>
+                            <input id="UploadedAccountId" class="form-control" type="text" name="UploadedAccountId" readonly data-bind="value: Tattoo().UploadedByAccountId" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <label for="TattooDescription">Tattoo Description</label>
+                            <textarea id="TattooDescription" rows="3" class="form-control" name="TattooDescription" data-bind="value: Tattoo().Description"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="BusinessId">Business Id</label>
+                            <input id="BusinessId" class="form-control" type="text" name="BusinessId" data-bind="value: Tattoo().BusinessId" />
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="ArtistAccountId">Artist Account Id</label>
+                            <input id="ArtistAccountId" class="form-control" type="text" name="ArtistAccountId" data-bind="value: Tattoo().ArtistAccountId" />
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="CanvasAccountId">Canvas Account Id</label>
+                            <input id="CanvasAccountId" class="form-control" type="text" name="CanvasAccountId" data-bind="value: Tattoo().CanvasAccountId" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <button class="btn btn-outline-success" data-bind="click: SaveTattoo">Save</button>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿<script type="text/html" id="SearchTemplate">
+    <div class="post-container">
+        <div class="post-content">
+            <input class="form-control" />
+
+        </div>
+        <div data-bind="component:
+                         { name: 'TattooGallery',
+                         params: {
+                            Api: 'Artist/GetGallery',
+                            ApiData: {},
+                            Header: 'Searched Tats',
+                            PerRow: 3,
+                            PerPage: 6,
+                            }
+                         } "></div>
+    </div>
+</script>

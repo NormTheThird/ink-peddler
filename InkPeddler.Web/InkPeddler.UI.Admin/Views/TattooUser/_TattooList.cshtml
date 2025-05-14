@@ -1,0 +1,58 @@
+﻿<div id="tattoouser-list" class="row" style="display:none">
+    <div class="card-box table-responsive">
+
+        <h4 class="m-t-0 header-title">Tattoos</h4>
+        <form class="m-t-20 m-b-10">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input class="form-control" type="text" placeholder="Search by name" data-bind="value: TattoosFilter, valueUpdate: 'afterkeydown'" />
+                </div>
+                <div class="form-group col-md-1 ">
+                    <select class="form-control" data-bind="value: TattoosPaging().PerPage">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <button type="button" class="btn btn-outline-success" data-bind="click: AddTattoo">Add Tattoo</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th># Comments</th>
+                    <th># Tats</th>
+                    <th># Views</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: TattoosPaging().PaginatedArray">
+                <tr>
+                    <td data-bind="html: Name" />
+                    <td data-bind="html: NumberOfComments" />
+                    <td data-bind="html: NumberOfTats" />
+                    <td data-bind="html: NumberOfViews" />
+                    <td>
+                        <button class="btn btn-outline-success" data-bind="click: $parent.EditTattoo">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-danger" data-bind="click: $parent.DeleteTattoo">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="m-t-30" data-bind="template: {'name' : 'PaginationTemplate', data: TattoosPaging()}, visible: TattoosPaging().PageTotal() > 1"></div>
+
+    </div>
+</div>
